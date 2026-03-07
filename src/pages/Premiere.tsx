@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Film, Award, Star, Camera, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import premiereImg from "@/assets/premiere-cinema.jpg";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
@@ -33,10 +34,10 @@ const Premiere = () => {
         description="After months of creation, filming, and community, Pulsate comes together as a feature-length dance film premiering in December 2026 at a Cineplex theater in Laval, Quebec."
       >
         <div className="flex flex-wrap gap-4">
-          <a href="#tickets" className="inline-flex items-center justify-center px-8 py-3 font-semibold bg-primary text-primary-foreground rounded-full hover:bg-gold-light transition-colors">
+          <a href="#tickets" className="btn-primary px-8 py-3.5 rounded-full text-sm">
             Get premiere ticket updates
           </a>
-          <a href="#awards" className="inline-flex items-center justify-center px-8 py-3 font-semibold border border-primary text-primary rounded-full hover:bg-primary/10 transition-colors">
+          <a href="#awards" className="btn-outline px-8 py-3.5 rounded-full text-sm">
             View award categories
           </a>
         </div>
@@ -46,10 +47,17 @@ const Premiere = () => {
         <SectionHeading tag="The Film" title="A cinematic celebration of dance" />
         <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
           {filmDetails.map((d, i) => (
-            <div key={i} className="flex items-start gap-3 p-5 rounded-xl bg-card border border-border">
+            <motion.div
+              key={i}
+              className="flex items-start gap-4 p-5 rounded-2xl glass-card"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
               <div className="w-2 h-2 rounded-full bg-primary mt-2 shrink-0" />
               <p className="text-sm leading-relaxed">{d}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
         <p className="text-sm text-muted-foreground mt-8">
@@ -60,12 +68,21 @@ const Premiere = () => {
       <Section variant="alt" id="awards">
         <SectionHeading tag="Awards" title="Categories celebrating excellence" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {awardCategories.map((a) => (
-            <div key={a.title} className="p-6 rounded-xl bg-card border border-border text-center card-glow transition-all duration-300 hover:-translate-y-1">
-              <a.icon className="text-primary mx-auto mb-3" size={28} />
+          {awardCategories.map((a, i) => (
+            <motion.div
+              key={a.title}
+              className="p-6 rounded-2xl bg-card border border-border text-center card-glow hover:-translate-y-2 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <div className="w-12 h-12 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
+                <a.icon className="text-primary" size={22} />
+              </div>
               <h3 className="font-bold mb-1">{a.title}</h3>
               <p className="text-sm text-muted-foreground">{a.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -79,9 +96,9 @@ const Premiere = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
             />
-            <button className="px-6 py-3 font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-gold-light transition-colors">
+            <button className="btn-primary px-6 py-3 rounded-xl text-sm">
               Notify Me
             </button>
           </div>

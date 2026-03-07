@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Video, Upload, Star, Film, Award, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
@@ -37,10 +37,10 @@ const Competition = () => {
         description="Pulsate is a dance-for-camera experience where your work is created, submitted, and selected with the final goal of appearing in a feature-length dance film."
       >
         <div className="flex flex-wrap gap-4">
-          <a href="#how-it-works" className="inline-flex items-center justify-center px-8 py-3 font-semibold bg-primary text-primary-foreground rounded-full hover:bg-gold-light transition-colors">
+          <a href="#how-it-works" className="btn-primary px-8 py-3.5 rounded-full text-sm">
             How it works
           </a>
-          <a href="#register" className="inline-flex items-center justify-center px-8 py-3 font-semibold border border-primary text-primary rounded-full hover:bg-primary/10 transition-colors">
+          <a href="#register" className="btn-outline px-8 py-3.5 rounded-full text-sm">
             Ready to register?
           </a>
         </div>
@@ -50,13 +50,20 @@ const Competition = () => {
         <SectionHeading tag="How It Works" title="From creation to the big screen in 5 steps" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {steps.map((s, i) => (
-            <div key={i} className="p-6 rounded-xl bg-card border border-border text-center card-glow transition-all duration-300 hover:-translate-y-1">
-              <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+            <motion.div
+              key={i}
+              className="p-6 rounded-2xl bg-card border border-border text-center card-glow hover:-translate-y-2 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
                 <s.icon className="text-primary" size={24} />
               </div>
               <h3 className="font-bold mb-2">{s.title}</h3>
               <p className="text-sm text-muted-foreground">{s.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -64,10 +71,17 @@ const Competition = () => {
       <Section variant="alt">
         <SectionHeading tag="Categories" title="Find your category" center />
         <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
-          {categories.map((c) => (
-            <div key={c} className="px-6 py-3 rounded-full bg-card border border-border text-sm font-medium">
+          {categories.map((c, i) => (
+            <motion.div
+              key={c}
+              className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:border-primary/30 transition-all duration-300"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+            >
               {c}
-            </div>
+            </motion.div>
           ))}
         </div>
         <p className="text-center text-muted-foreground text-sm mt-8">
@@ -78,11 +92,18 @@ const Competition = () => {
       <Section>
         <SectionHeading tag="Judging" title="How entries are evaluated" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-          {criteria.map((c) => (
-            <div key={c.name} className="p-6 rounded-xl bg-card border border-border text-center">
-              <div className="text-3xl font-bold font-serif text-primary mb-2">{c.weight}</div>
+          {criteria.map((c, i) => (
+            <motion.div
+              key={c.name}
+              className="p-6 rounded-2xl bg-card border border-border text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <div className="text-3xl font-bold font-serif gold-gradient-text mb-2">{c.weight}</div>
               <h4 className="font-semibold text-sm">{c.name}</h4>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -96,9 +117,9 @@ const Competition = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
             />
-            <button className="px-6 py-3 font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-gold-light transition-colors">
+            <button className="btn-primary px-6 py-3 rounded-xl text-sm">
               Notify Me
             </button>
           </div>

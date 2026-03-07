@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Heart, Film, Users, Star, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import aboutImg from "@/assets/about-dance.jpg";
 import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
@@ -29,13 +30,13 @@ const About = () => {
         title="A dance film project for every passionate mover"
         description="Pulsate is a hybrid dance and film project created to help passionate dancers grow in their art, feel empowered, and share the experience with their community."
       >
-        <Link to="/get-involved" className="inline-flex items-center justify-center px-8 py-3 font-semibold bg-primary text-primary-foreground rounded-full hover:bg-gold-light transition-colors">
+        <Link to="/get-involved" className="btn-primary px-8 py-3.5 rounded-full text-sm">
           Get Tickets
         </Link>
       </PageHero>
 
       <Section>
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <SectionHeading tag="What is Pulsate?" title="More than a competition — a movement" />
             <p className="text-muted-foreground leading-relaxed mb-4">
@@ -45,7 +46,7 @@ const About = () => {
               Multi-style, multi-age, and open to all levels, the competition is built around growth, storytelling, and cinematic presence — not just tricks, medals, or speed.
             </p>
           </div>
-          <div className="aspect-video rounded-xl overflow-hidden border border-border">
+          <div className="aspect-video rounded-2xl overflow-hidden border border-border">
             <img src={heroImg} alt="Dance performance" className="w-full h-full object-cover" />
           </div>
         </div>
@@ -54,12 +55,21 @@ const About = () => {
       <Section variant="alt">
         <SectionHeading tag="Our Values" title="What drives Pulsate" center />
         <div className="grid sm:grid-cols-3 gap-8">
-          {values.map((v) => (
-            <div key={v.title} className="p-8 rounded-xl bg-card border border-border text-center card-glow transition-all duration-300 hover:-translate-y-1">
-              <v.icon className="text-primary mx-auto mb-4" size={36} />
+          {values.map((v, i) => (
+            <motion.div
+              key={v.title}
+              className="p-8 rounded-2xl bg-card border border-border text-center card-glow hover:-translate-y-2 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.12 }}
+            >
+              <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-primary/10 flex items-center justify-center">
+                <v.icon className="text-primary" size={26} />
+              </div>
               <h3 className="text-xl font-bold mb-3">{v.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{v.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -67,12 +77,19 @@ const About = () => {
       <Section>
         <SectionHeading tag="The Journey" title="From submission to screen in 5 steps" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
-          {journey.map((j) => (
-            <div key={j.step} className="relative p-6 rounded-xl bg-card border border-border">
-              <span className="text-4xl font-bold font-serif text-primary/30">{j.step}</span>
+          {journey.map((j, i) => (
+            <motion.div
+              key={j.step}
+              className="relative p-6 rounded-2xl bg-card border border-border hover:-translate-y-1 transition-all duration-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <span className="text-4xl font-bold font-serif gold-gradient-text opacity-50">{j.step}</span>
               <h4 className="text-lg font-bold mt-2 mb-2">{j.title}</h4>
               <p className="text-sm text-muted-foreground">{j.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -80,22 +97,20 @@ const About = () => {
       <Section variant="alt">
         <div className="max-w-3xl mx-auto text-center">
           <SectionHeading tag="AID – Art in Dance" title="Pulsate believes in Accessibility, Inclusion & Diversity" center />
-          <p className="text-muted-foreground leading-relaxed mb-6">
+          <p className="text-muted-foreground leading-relaxed mb-8">
             Pulsate is committed to making dance accessible to everyone. We celebrate all bodies, all backgrounds, and all styles. Our AID initiative ensures that financial barriers, physical limitations, and cultural differences never stand in the way of artistic expression.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <div className="px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-              <Sparkles className="inline mr-2 text-primary" size={16} />
-              <span className="text-sm font-medium">Accessibility</span>
-            </div>
-            <div className="px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-              <Star className="inline mr-2 text-primary" size={16} />
-              <span className="text-sm font-medium">Inclusion</span>
-            </div>
-            <div className="px-6 py-3 rounded-full bg-primary/10 border border-primary/20">
-              <Users className="inline mr-2 text-primary" size={16} />
-              <span className="text-sm font-medium">Diversity</span>
-            </div>
+            {[
+              { icon: Sparkles, label: "Accessibility" },
+              { icon: Star, label: "Inclusion" },
+              { icon: Users, label: "Diversity" },
+            ].map((item) => (
+              <div key={item.label} className="px-6 py-3 rounded-full glass-card flex items-center gap-2">
+                <item.icon className="text-primary" size={16} />
+                <span className="text-sm font-medium">{item.label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </Section>
