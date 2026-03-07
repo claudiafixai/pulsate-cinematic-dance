@@ -1,8 +1,18 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
 import logo from "@/assets/pulsate-logo.png";
+import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const { submit, loading } = useEmailSubmit();
+
+  const handleSubmit = async () => {
+    const success = await submit({ email, source: "footer-newsletter" });
+    if (success) setEmail("");
+  };
+
   return (
     <footer className="bg-secondary border-t border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -60,10 +70,12 @@ const Footer = () => {
               <input
                 type="email"
                 placeholder="Your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 px-3 py-2.5 text-sm bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
               />
-              <button className="btn-primary px-4 py-2.5 text-sm rounded-lg">
-                Join
+              <button onClick={handleSubmit} disabled={loading} className="btn-primary px-4 py-2.5 text-sm rounded-lg disabled:opacity-50">
+                {loading ? "..." : "Join"}
               </button>
             </div>
           </div>
