@@ -146,15 +146,65 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Partners & Sponsors */}
+      {/* Brand Partners */}
       <Section>
-        <SectionHeading tag="Our Community" title="Brand partners & sponsors" center />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <SectionHeading tag="Brand Partners" title="Powered by passionate partners" center />
+        <div className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto mb-16">
           {[
-            { name: "Danse Alejandro", type: "Brand Partner", logo: logoDanseAlejandro, url: "https://www.dansealejandro.com/", bg: "bg-white" },
-            { name: "ClaudiaOps AI", type: "Brand Partner", logo: logoClaudiaOps, url: "https://claudiaops.ai/", bg: "bg-white" },
-            { name: "Spa Mobile", type: "Sponsor", logo: logoSpaMobile, url: "https://www.spa-mobile.com/", bg: "bg-white" },
-            { name: "Studio Jolie Moi", type: "Sponsor", logo: logoStudioJolieMoi, url: "https://studiojoliemoi.com/en", bg: "bg-white" },
+            { name: "Danse Alejandro", logo: logoDanseAlejandro, url: "https://www.dansealejandro.com/", bg: "bg-white" },
+            { name: "ClaudiaOps AI", logo: logoClaudiaOps, url: "https://claudiaops.ai/", bg: "bg-white" },
+          ].map((p, i) => (
+            <motion.a
+              key={p.name}
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-8 rounded-2xl glass-card text-center hover:-translate-y-2 transition-all duration-500 block group"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className={`w-36 h-36 mx-auto mb-5 rounded-2xl ${p.bg} flex items-center justify-center p-4 group-hover:shadow-xl transition-shadow duration-300`}>
+                <img src={p.logo} alt={p.name} className="w-full h-full object-contain" />
+              </div>
+              <h4 className="text-lg font-bold group-hover:text-primary transition-colors">{p.name}</h4>
+              <p className="text-xs text-primary/60 mt-1 uppercase tracking-[0.15em]">Brand Partner</p>
+            </motion.a>
+          ))}
+        </div>
+
+        <div className="divider-gold mb-16" />
+
+        {/* Creative Collaborator */}
+        <SectionHeading tag="Creative Collaborator" title="Bringing the vision to life" center />
+        <div className="max-w-sm mx-auto mb-16">
+          <motion.a
+            href="https://alkimiaproductions.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-8 rounded-2xl glass-card text-center hover:-translate-y-2 transition-all duration-500 block group"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="w-32 h-32 mx-auto mb-5 rounded-2xl bg-card flex items-center justify-center p-4 group-hover:shadow-xl transition-shadow duration-300">
+              <img src={logoAlkimia} alt="Alkimia Productions" className="w-full h-full object-contain" />
+            </div>
+            <h4 className="text-lg font-bold group-hover:text-primary transition-colors">Alkimia Productions</h4>
+            <p className="text-xs text-primary/60 mt-1 uppercase tracking-[0.15em]">Creative Collaborator</p>
+          </motion.a>
+        </div>
+
+        <div className="divider-gold mb-16" />
+
+        {/* Vendors */}
+        <SectionHeading tag="Vendors" title="Our trusted vendors" center />
+        <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          {[
+            { name: "Cineplex", logo: logoCineplex, url: "https://www.cineplex.com/", bg: "bg-white" },
+            { name: "Spa Mobile", logo: logoSpaMobile, url: "https://www.spa-mobile.com/", bg: "bg-white" },
+            { name: "Studio Jolie Moi", logo: logoStudioJolieMoi, url: "https://studiojoliemoi.com/en", bg: "bg-white" },
           ].map((p, i) => (
             <motion.a
               key={p.name}
@@ -167,11 +217,11 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
             >
-              <div className={`w-24 h-24 mx-auto mb-4 rounded-xl ${p.bg} flex items-center justify-center p-3 group-hover:shadow-lg transition-shadow duration-300`}>
+              <div className={`w-28 h-28 mx-auto mb-4 rounded-xl ${p.bg} flex items-center justify-center p-3 group-hover:shadow-lg transition-shadow duration-300`}>
                 <img src={p.logo} alt={p.name} className="w-full h-full object-contain" />
               </div>
               <h4 className="font-semibold group-hover:text-primary transition-colors">{p.name}</h4>
-              <p className="text-xs text-muted-foreground mt-1">{p.type}</p>
+              <p className="text-xs text-primary/60 mt-1 uppercase tracking-[0.15em]">Vendor</p>
             </motion.a>
           ))}
         </div>
