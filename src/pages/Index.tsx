@@ -149,25 +149,28 @@ const Index = () => {
         <SectionHeading tag="Our Community" title="Brand partners & sponsors" center />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {[
-            { name: "Dance Alejandro", type: "Brand Partner" },
-            { name: "Claudia Ops.ai", type: "Brand Partner" },
-            { name: "Spa Mobile", type: "Sponsor" },
-            { name: "Studio Jolie Moi", type: "Sponsor" },
+            { name: "Danse Alejandro", type: "Brand Partner", logo: logoDanseAlejandro, url: "https://www.dansealejandro.com/", bg: "bg-white" },
+            { name: "ClaudiaOps AI", type: "Brand Partner", logo: logoClaudiaOps, url: "https://claudiaops.ai/", bg: "bg-white" },
+            { name: "Spa Mobile", type: "Sponsor", logo: logoSpaMobile, url: "https://www.spa-mobile.com/", bg: "bg-white" },
+            { name: "Studio Jolie Moi", type: "Sponsor", logo: logoStudioJolieMoi, url: "https://studiojoliemoi.com/en", bg: "bg-white" },
           ].map((p, i) => (
-            <motion.div
+            <motion.a
               key={p.name}
-              className="p-6 rounded-2xl glass-card text-center hover:-translate-y-1 transition-all duration-400"
+              href={p.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-6 rounded-2xl glass-card text-center hover:-translate-y-2 transition-all duration-500 block group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08 }}
             >
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-xl font-serif font-bold text-primary">{p.name[0]}</span>
+              <div className={`w-24 h-24 mx-auto mb-4 rounded-xl ${p.bg} flex items-center justify-center p-3 group-hover:shadow-lg transition-shadow duration-300`}>
+                <img src={p.logo} alt={p.name} className="w-full h-full object-contain" />
               </div>
-              <h4 className="font-semibold">{p.name}</h4>
+              <h4 className="font-semibold group-hover:text-primary transition-colors">{p.name}</h4>
               <p className="text-xs text-muted-foreground mt-1">{p.type}</p>
-            </motion.div>
+            </motion.a>
           ))}
         </div>
       </Section>
