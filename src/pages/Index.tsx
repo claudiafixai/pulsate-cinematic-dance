@@ -7,6 +7,8 @@ import logoDanseAlejandro from "@/assets/logo-danse-alejandro.png";
 import logoClaudiaOps from "@/assets/logo-claudiaops.png";
 import logoSpaMobile from "@/assets/logo-spa-mobile.jpg";
 import logoStudioJolieMoi from "@/assets/logo-studio-jolie-moi.jpg";
+import logoAlkimia from "@/assets/logo-alkimia.png";
+import logoCineplex from "@/assets/logo-cineplex.png";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
 import SectionHeading from "@/components/SectionHeading";
