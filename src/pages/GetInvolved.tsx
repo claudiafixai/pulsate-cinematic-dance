@@ -5,6 +5,7 @@ import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
 import SectionHeading from "@/components/SectionHeading";
+import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
 const tiers = [
   {
@@ -37,6 +38,17 @@ const merchandise = [
 
 const GetInvolved = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const { submit, loading } = useEmailSubmit();
+
+  const handleContact = async () => {
+    const success = await submit({
+      email: form.email,
+      source: "contact",
+      name: form.name,
+      message: form.message,
+    });
+    if (success) setForm({ name: "", email: "", message: "" });
+  };
 
   return (
     <main>
@@ -146,8 +158,8 @@ const GetInvolved = () => {
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               className="w-full px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
             />
-            <button className="btn-primary w-full px-6 py-3.5 rounded-xl text-sm">
-              Send Message
+            <button onClick={handleContact} disabled={loading} className="btn-primary w-full px-6 py-3.5 rounded-xl text-sm disabled:opacity-50">
+              {loading ? "Sending..." : "Send Message"}
             </button>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm text-muted-foreground">

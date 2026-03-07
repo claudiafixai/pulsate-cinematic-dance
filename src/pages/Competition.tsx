@@ -5,6 +5,7 @@ import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
 import SectionHeading from "@/components/SectionHeading";
+import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
 const steps = [
   { icon: Mail, title: "Register", desc: "Create your Pulsate account and select your category." },
@@ -27,6 +28,12 @@ const criteria = [
 
 const Competition = () => {
   const [email, setEmail] = useState("");
+  const { submit, loading } = useEmailSubmit();
+
+  const handleSubmit = async () => {
+    const success = await submit({ email, source: "competition-notify" });
+    if (success) setEmail("");
+  };
 
   return (
     <main>
@@ -119,8 +126,8 @@ const Competition = () => {
               placeholder="Enter your email"
               className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
             />
-            <button className="btn-primary px-6 py-3 rounded-xl text-sm">
-              Notify Me
+            <button onClick={handleSubmit} disabled={loading} className="btn-primary px-6 py-3 rounded-xl text-sm disabled:opacity-50">
+              {loading ? "..." : "Notify Me"}
             </button>
           </div>
         </div>
