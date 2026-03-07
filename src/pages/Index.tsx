@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Users, Award, Clapperboard, Eye, ChevronDown } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
+import aboutGroupImg from "@/assets/about-group-dance.jpg";
 import logoDanseAlejandro from "@/assets/logo-danse-alejandro.png";
 import logoClaudiaOps from "@/assets/logo-claudiaops.png";
 import logoSpaMobile from "@/assets/logo-spa-mobile.jpg";
@@ -79,6 +80,9 @@ const team = [
 
 const Index = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const parallaxRef = useRef(null);
+  const { scrollYProgress } = useScroll({ target: parallaxRef, offset: ["start end", "end start"] });
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
     <main>
@@ -125,24 +129,64 @@ const Index = () => {
         </div>
       </Section>
 
+      {/* Parallax Dance Image */}
+      <section ref={parallaxRef} className="relative h-[50vh] overflow-hidden">
+        <motion.div
+          className="absolute inset-0"
+          style={{ y: parallaxY }}
+        >
+          <img src={aboutGroupImg} alt="Group bachata dance class" className="w-full h-[140%] object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
+        </motion.div>
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <motion.p
+            className="text-2xl sm:text-4xl lg:text-5xl font-serif font-bold text-center max-w-3xl px-4 gold-gradient-text"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            Feel the rhythm. Tell your story.
+          </motion.p>
+        </div>
+      </section>
+
       {/* About Preview */}
       <Section variant="alt">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
             <SectionHeading tag="About Pulsate" title="A dance film project for every passionate mover" />
             <p className="text-muted-foreground leading-relaxed mb-8">
               Pulsate is a hybrid dance and film project created to help passionate dancers grow in their art, feel empowered, and share the experience with their community. From first video submission to the movie theater premiere, the journey is designed to be fun, supportive, and open to all levels, ages, and styles.
             </p>
-            <Link to="/about" className="btn-outline px-6 py-2.5 rounded-full text-sm">
+            <Link to="/about" className="btn-primary px-6 py-2.5 rounded-full text-sm">
               Discover the full story →
             </Link>
-          </div>
-          <div className="relative">
-            <div className="aspect-video rounded-2xl overflow-hidden border border-border">
-              <img src={heroImg} alt="Dancers performing" className="w-full h-full object-cover" />
+          </motion.div>
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="aspect-video rounded-2xl overflow-hidden border border-border shadow-2xl shadow-primary/5">
+              <motion.img
+                src={heroImg}
+                alt="Dancers performing"
+                className="w-full h-full object-cover"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.6 }}
+              />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border border-primary/20 -z-10" />
-          </div>
+            <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl border border-primary/20 -z-10" />
+            <div className="absolute -top-4 -left-4 w-20 h-20 rounded-xl border border-primary/10 -z-10" />
+          </motion.div>
         </div>
       </Section>
 
