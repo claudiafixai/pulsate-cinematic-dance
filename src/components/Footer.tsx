@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin } from "lucide-react";
+import logo from "@/assets/pulsate-logo.png";
 
 const Footer = () => {
   return (
@@ -7,7 +8,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
-            <h3 className="text-xl font-bold text-primary mb-4">Pulsate</h3>
+            <img src={logo} alt="Pulsate" className="h-12 w-auto mb-3" />
             <p className="text-muted-foreground text-sm leading-relaxed">
               A cinematic dance competition designed for the big screen. Where dance meets film and community.
             </p>
