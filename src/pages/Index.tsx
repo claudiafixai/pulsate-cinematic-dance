@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Users, Award, Clapperboard, Eye, ChevronDown, Mail, Phone, MapPin } from "lucide-react";
+import { Users, Award, Clapperboard, Eye, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
@@ -33,13 +34,13 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="flex gap-4 sm:gap-6">
+    <div className="flex gap-4 sm:gap-8">
       {units.map((u) => (
         <div key={u.label} className="text-center">
-          <div className="text-3xl sm:text-5xl font-bold font-serif text-primary tabular-nums">
+          <div className="text-3xl sm:text-5xl font-bold font-serif gold-gradient-text tabular-nums">
             {String(u.value).padStart(2, "0")}
           </div>
-          <div className="text-xs sm:text-sm text-muted-foreground mt-1 uppercase tracking-wider">{u.label}</div>
+          <div className="text-[10px] sm:text-xs text-muted-foreground mt-2 uppercase tracking-[0.2em]">{u.label}</div>
         </div>
       ))}
     </div>
@@ -81,16 +82,16 @@ const Index = () => {
         title="Where dance meets film and community"
         description="A cinematic dance competition designed for the big screen. Submit your art, grow as an artist, and premiere in a real movie theater."
       >
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <Link to="/competition" className="inline-flex items-center justify-center px-8 py-3 font-semibold bg-primary text-primary-foreground rounded-full hover:bg-gold-light transition-colors">
+        <div className="flex flex-col sm:flex-row gap-4 mb-10">
+          <Link to="/competition" className="btn-primary px-8 py-3.5 rounded-full text-sm">
             Enter the Competition
           </Link>
-          <Link to="/about" className="inline-flex items-center justify-center px-8 py-3 font-semibold border border-primary text-primary rounded-full hover:bg-primary/10 transition-colors">
+          <Link to="/about" className="btn-outline px-8 py-3.5 rounded-full text-sm">
             Learn More
           </Link>
         </div>
-        <div className="mt-4">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">Registration opens March 31, 2026</p>
+        <div>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Registration opens March 31, 2026</p>
           <CountdownTimer />
         </div>
       </PageHero>
@@ -99,32 +100,42 @@ const Index = () => {
       <Section>
         <SectionHeading tag="Opportunities" title="A place for everyone in the Pulsate story" center />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {opportunities.map((opp) => (
-            <div key={opp.title} className="p-6 rounded-xl bg-card border border-border card-glow transition-all duration-300 hover:-translate-y-1">
-              <opp.icon className="text-primary mb-4" size={32} />
+          {opportunities.map((opp, i) => (
+            <motion.div
+              key={opp.title}
+              className="group p-8 rounded-2xl bg-card border border-border card-glow hover:-translate-y-2 transition-all duration-500"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1, duration: 0.5 }}
+            >
+              <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 transition-colors duration-300">
+                <opp.icon className="text-primary" size={24} />
+              </div>
               <h3 className="text-lg font-bold mb-2">{opp.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{opp.desc}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
 
       {/* About Preview */}
       <Section variant="alt">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <SectionHeading tag="About Pulsate" title="A dance film project for every passionate mover" />
-            <p className="text-muted-foreground leading-relaxed mb-6">
+            <p className="text-muted-foreground leading-relaxed mb-8">
               Pulsate is a hybrid dance and film project created to help passionate dancers grow in their art, feel empowered, and share the experience with their community. From first video submission to the movie theater premiere, the journey is designed to be fun, supportive, and open to all levels, ages, and styles.
             </p>
-            <Link to="/about" className="inline-flex items-center text-primary font-medium hover:text-gold-light transition-colors gap-1">
+            <Link to="/about" className="btn-outline px-6 py-2.5 rounded-full text-sm">
               Discover the full story →
             </Link>
           </div>
           <div className="relative">
-            <div className="aspect-video rounded-xl overflow-hidden border border-border">
+            <div className="aspect-video rounded-2xl overflow-hidden border border-border">
               <img src={heroImg} alt="Dancers performing" className="w-full h-full object-cover" />
             </div>
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 rounded-2xl border border-primary/20 -z-10" />
           </div>
         </div>
       </Section>
@@ -138,14 +149,21 @@ const Index = () => {
             { name: "Claudia Ops.ai", type: "Brand Partner" },
             { name: "Spa Mobile", type: "Sponsor" },
             { name: "Studio Jolie Moi", type: "Sponsor" },
-          ].map((p) => (
-            <div key={p.name} className="p-6 rounded-xl bg-card border border-border text-center">
+          ].map((p, i) => (
+            <motion.div
+              key={p.name}
+              className="p-6 rounded-2xl glass-card text-center hover:-translate-y-1 transition-all duration-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
               <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
                 <span className="text-xl font-serif font-bold text-primary">{p.name[0]}</span>
               </div>
               <h4 className="font-semibold">{p.name}</h4>
               <p className="text-xs text-muted-foreground mt-1">{p.type}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -154,14 +172,21 @@ const Index = () => {
       <Section variant="alt">
         <SectionHeading tag="The Team" title="The people behind Pulsate" center />
         <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-          {team.map((m) => (
-            <div key={m.name} className="text-center">
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center">
-                <span className="text-2xl font-serif font-bold text-primary">{m.name.split(" ").map(n => n[0]).join("")}</span>
+          {team.map((m, i) => (
+            <motion.div
+              key={m.name}
+              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/15 flex items-center justify-center border border-primary/20">
+                <span className="text-2xl font-serif font-bold gold-gradient-text">{m.name.split(" ").map(n => n[0]).join("")}</span>
               </div>
               <h4 className="font-semibold">{m.name}</h4>
               <p className="text-sm text-muted-foreground mt-1">{m.role}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -171,20 +196,31 @@ const Index = () => {
         <SectionHeading tag="FAQ" title="Frequently asked questions" center />
         <div className="max-w-3xl mx-auto grid gap-3">
           {faqs.map((faq, i) => (
-            <div key={i} className="rounded-xl bg-card border border-border overflow-hidden">
+            <motion.div
+              key={i}
+              className="rounded-2xl bg-card border border-border overflow-hidden"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.04 }}
+            >
               <button
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                className="w-full flex items-center justify-between p-5 text-left"
+                className="w-full flex items-center justify-between p-5 text-left hover:bg-secondary/50 transition-colors duration-300"
               >
                 <span className="font-medium text-sm sm:text-base pr-4">{faq.q}</span>
-                <ChevronDown className={`text-primary shrink-0 transition-transform ${openFaq === i ? "rotate-180" : ""}`} size={20} />
+                <ChevronDown className={`text-primary shrink-0 transition-transform duration-300 ${openFaq === i ? "rotate-180" : ""}`} size={18} />
               </button>
               {openFaq === i && (
-                <div className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed animate-fade-up">
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  className="px-5 pb-5 text-sm text-muted-foreground leading-relaxed"
+                >
                   {faq.a}
-                </div>
+                </motion.div>
               )}
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>

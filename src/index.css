@@ -6,52 +6,57 @@
 
 @layer base {
   :root {
-    --background: 228 45% 7%;
-    --foreground: 34 45% 94%;
+    /* Deep warm dark base */
+    --background: 25 28% 8%;
+    --foreground: 35 40% 92%;
 
-    --card: 228 35% 12%;
-    --card-foreground: 34 45% 94%;
+    --card: 25 20% 12%;
+    --card-foreground: 35 40% 92%;
 
-    --popover: 228 35% 12%;
-    --popover-foreground: 34 45% 94%;
+    --popover: 25 20% 12%;
+    --popover-foreground: 35 40% 92%;
 
-    --primary: 42 52% 54%;
-    --primary-foreground: 228 45% 7%;
+    /* Primary: warm gold #a5845b */
+    --primary: 32 30% 50%;
+    --primary-foreground: 25 28% 8%;
 
-    --secondary: 228 25% 18%;
-    --secondary-foreground: 34 45% 94%;
+    --secondary: 25 18% 15%;
+    --secondary-foreground: 35 40% 92%;
 
-    --muted: 228 20% 15%;
-    --muted-foreground: 34 20% 65%;
+    --muted: 25 15% 14%;
+    --muted-foreground: 32 18% 58%;
 
-    --accent: 42 52% 54%;
-    --accent-foreground: 228 45% 7%;
+    --accent: 32 30% 50%;
+    --accent-foreground: 25 28% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 228 20% 20%;
-    --input: 228 20% 20%;
-    --ring: 42 52% 54%;
+    --border: 30 12% 18%;
+    --input: 30 12% 18%;
+    --ring: 32 30% 50%;
 
     --radius: 0.5rem;
 
-    --gold: 42 52% 54%;
-    --gold-light: 42 60% 70%;
-    --gold-dark: 42 45% 40%;
-    --navy: 228 45% 7%;
-    --navy-light: 228 35% 12%;
-    --cream: 34 45% 94%;
-    --cream-muted: 34 20% 75%;
+    /* Brand palette from Canva */
+    --gold: 32 30% 50%;
+    --gold-light: 32 52% 78%;
+    --gold-dark: 25 36% 29%;
+    --gold-mid: 32 33% 41%;
+    --bronze: 22 37% 22%;
+    --cream: 35 40% 92%;
+    --cream-muted: 32 18% 62%;
+    --warm-dark: 25 28% 8%;
+    --warm-dark-light: 25 20% 12%;
 
-    --sidebar-background: 228 35% 10%;
-    --sidebar-foreground: 34 45% 94%;
-    --sidebar-primary: 42 52% 54%;
-    --sidebar-primary-foreground: 228 45% 7%;
-    --sidebar-accent: 228 25% 18%;
-    --sidebar-accent-foreground: 34 45% 94%;
-    --sidebar-border: 228 20% 20%;
-    --sidebar-ring: 42 52% 54%;
+    --sidebar-background: 25 20% 10%;
+    --sidebar-foreground: 35 40% 92%;
+    --sidebar-primary: 32 30% 50%;
+    --sidebar-primary-foreground: 25 28% 8%;
+    --sidebar-accent: 25 18% 15%;
+    --sidebar-accent-foreground: 35 40% 92%;
+    --sidebar-border: 30 12% 18%;
+    --sidebar-ring: 32 30% 50%;
   }
 }
 
@@ -67,6 +72,10 @@
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
   }
+
+  ::selection {
+    background: hsl(32, 30%, 50%, 0.3);
+  }
 }
 
 @layer components {
@@ -75,43 +84,81 @@
   }
 
   .gold-gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-[hsl(42,60%,70%)] via-[hsl(42,52%,54%)] to-[hsl(42,45%,40%)];
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(32, 52%, 78%), hsl(32, 30%, 50%), hsl(25, 36%, 29%));
   }
 
   .gold-border-gradient {
-    border: 1px solid hsl(42, 52%, 54%);
+    border: 1px solid hsl(32, 30%, 50%);
   }
 
   .hero-overlay {
-    background: linear-gradient(to bottom, 
-      hsla(228, 45%, 7%, 0.3) 0%, 
-      hsla(228, 45%, 7%, 0.6) 50%, 
-      hsla(228, 45%, 7%, 0.95) 100%
+    background: linear-gradient(to bottom,
+      hsla(25, 28%, 8%, 0.2) 0%,
+      hsla(25, 28%, 8%, 0.5) 40%,
+      hsla(25, 28%, 8%, 0.92) 100%
     );
   }
 
   .card-glow {
-    box-shadow: 0 0 30px -10px hsla(42, 52%, 54%, 0.15);
+    box-shadow: 0 4px 30px -10px hsla(32, 30%, 50%, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-glow:hover {
-    box-shadow: 0 0 40px -5px hsla(42, 52%, 54%, 0.25);
+    box-shadow: 0 8px 40px -5px hsla(32, 30%, 50%, 0.2);
+  }
+
+  .glass-card {
+    background: hsla(25, 20%, 12%, 0.6);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsla(32, 30%, 50%, 0.1);
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, hsl(32, 30%, 50%), hsl(32, 33%, 41%));
+    color: hsl(35, 40%, 92%);
+    box-shadow: 0 4px 20px -4px hsla(32, 30%, 50%, 0.3);
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, hsl(32, 52%, 78%), hsl(32, 30%, 50%));
+    box-shadow: 0 6px 30px -4px hsla(32, 30%, 50%, 0.5);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center font-semibold transition-all duration-300;
+    border: 1px solid hsl(32, 30%, 50%);
+    color: hsl(32, 52%, 78%);
+  }
+
+  .btn-outline:hover {
+    background: hsla(32, 30%, 50%, 0.1);
+    border-color: hsl(32, 52%, 78%);
+    transform: translateY(-1px);
+  }
+
+  .divider-gold {
+    height: 1px;
+    background: linear-gradient(to right, transparent, hsl(32, 30%, 50%, 0.3), transparent);
   }
 }
 
 @layer utilities {
   .animate-fade-up {
-    animation: fadeUp 0.6s ease-out forwards;
+    animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   .animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+    animation: fadeIn 0.7s ease-out forwards;
   }
 
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
@@ -132,5 +179,14 @@
   .animate-shimmer {
     background-size: 200% auto;
     animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsla(32, 30%, 50%, 0.1); }
+    50% { box-shadow: 0 0 40px hsla(32, 30%, 50%, 0.25); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
   }
 }

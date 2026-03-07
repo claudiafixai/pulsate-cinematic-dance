@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Handshake, ShoppingBag, Mail, Phone, Star, Zap, Crown } from "lucide-react";
+import { ShoppingBag, Mail, Phone, Star, Zap, Crown } from "lucide-react";
+import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
@@ -46,13 +47,13 @@ const GetInvolved = () => {
         description="Pulsate is more than a dance film. It is a community project powered by dancers, studios, sponsors, and supporters who believe in giving young artists real opportunities."
       >
         <div className="flex flex-wrap gap-4">
-          <a href="#sponsors" className="inline-flex items-center justify-center px-8 py-3 font-semibold bg-primary text-primary-foreground rounded-full hover:bg-gold-light transition-colors">
+          <a href="#sponsors" className="btn-primary px-8 py-3.5 rounded-full text-sm">
             Sponsor or partner with Pulsate
           </a>
-          <a href="#merch" className="inline-flex items-center justify-center px-8 py-3 font-semibold border border-primary text-primary rounded-full hover:bg-primary/10 transition-colors">
+          <a href="#merch" className="btn-outline px-8 py-3.5 rounded-full text-sm">
             Explore Pulsate merchandise
           </a>
-          <a href="#contact" className="text-primary font-medium underline underline-offset-4 flex items-center">
+          <a href="#contact" className="text-primary font-medium underline underline-offset-4 flex items-center hover:text-gold-light transition-colors">
             Contact the team
           </a>
         </div>
@@ -64,12 +65,25 @@ const GetInvolved = () => {
           Pulsate creates visibility for dancers, studios, and brands that care about arts, youth, and diversity. As a sponsor or partner, your brand becomes part of a movement.
         </p>
         <div className="grid sm:grid-cols-3 gap-8">
-          {tiers.map((t) => (
-            <div key={t.name} className={`p-8 rounded-xl border text-center transition-all duration-300 hover:-translate-y-1 ${t.highlighted ? "bg-card border-primary card-glow" : "bg-card border-border"}`}>
-              <t.icon className="text-primary mx-auto mb-4" size={32} />
+          {tiers.map((t, i) => (
+            <motion.div
+              key={t.name}
+              className={`p-8 rounded-2xl border text-center hover:-translate-y-2 transition-all duration-500 ${
+                t.highlighted
+                  ? "bg-card border-primary card-glow animate-pulse-glow"
+                  : "bg-card border-border card-glow"
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center">
+                <t.icon className="text-primary" size={26} />
+              </div>
               <h3 className="text-xl font-bold mb-1">{t.name}</h3>
-              <p className="text-primary font-semibold text-lg mb-4">{t.price}</p>
-              <ul className="space-y-2 text-sm text-muted-foreground">
+              <p className="gold-gradient-text font-semibold text-lg mb-4">{t.price}</p>
+              <ul className="space-y-2.5 text-sm text-muted-foreground">
                 {t.features.map((f) => (
                   <li key={f} className="flex items-center gap-2 justify-center">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
@@ -77,7 +91,7 @@ const GetInvolved = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -85,12 +99,21 @@ const GetInvolved = () => {
       <Section variant="alt" id="merch">
         <SectionHeading tag="Merchandise" title="Wear the movement" center />
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl mx-auto">
-          {merchandise.map((m) => (
-            <div key={m.name} className="p-6 rounded-xl bg-card border border-border text-center">
-              <ShoppingBag className="text-primary mx-auto mb-3" size={24} />
+          {merchandise.map((m, i) => (
+            <motion.div
+              key={m.name}
+              className="p-6 rounded-2xl glass-card text-center hover:-translate-y-1 transition-all duration-400"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+            >
+              <div className="w-10 h-10 mx-auto mb-3 rounded-lg bg-primary/10 flex items-center justify-center">
+                <ShoppingBag className="text-primary" size={18} />
+              </div>
               <h4 className="font-semibold text-sm">{m.name}</h4>
-              <p className="text-primary font-bold mt-1">{m.price}</p>
-            </div>
+              <p className="gold-gradient-text font-bold mt-1">{m.price}</p>
+            </motion.div>
           ))}
         </div>
         <p className="text-center text-muted-foreground text-sm mt-8">
@@ -107,32 +130,32 @@ const GetInvolved = () => {
               placeholder="Your name"
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="w-full px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
             />
             <input
               type="email"
               placeholder="Your email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary"
+              className="w-full px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
             />
             <textarea
               placeholder="Your message"
               rows={4}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none"
+              className="w-full px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary resize-none transition-all"
             />
-            <button className="w-full px-6 py-3 font-semibold bg-primary text-primary-foreground rounded-lg hover:bg-gold-light transition-colors">
+            <button className="btn-primary w-full px-6 py-3.5 rounded-xl text-sm">
               Send Message
             </button>
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm text-muted-foreground">
-            <a href="mailto:info@pulsateproject.ca" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Mail size={14} /> info@pulsateproject.ca
+            <a href="mailto:info@pulsateproject.ca" className="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+              <Mail size={14} className="text-primary/60" /> info@pulsateproject.ca
             </a>
-            <a href="tel:+15146194119" className="flex items-center gap-2 hover:text-primary transition-colors">
-              <Phone size={14} /> +1 514 619-4119
+            <a href="tel:+15146194119" className="flex items-center gap-2 hover:text-primary transition-colors duration-300">
+              <Phone size={14} className="text-primary/60" /> +1 514 619-4119
             </a>
           </div>
         </div>
