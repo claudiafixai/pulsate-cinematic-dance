@@ -130,13 +130,13 @@ const Index = () => {
       </Section>
 
       {/* Parallax Dance Image */}
-      <section className="relative h-[50vh] overflow-hidden">
+      <section ref={parallaxRef} className="relative h-[50vh] overflow-hidden">
         <motion.div
           className="absolute inset-0"
-          style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -150]) }}
+          style={{ y: parallaxY }}
         >
-          <img src={aboutGroupImg} alt="Group bachata dance class" className="w-full h-[130%] object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+          <img src={aboutGroupImg} alt="Group bachata dance class" className="w-full h-[140%] object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/20 to-background" />
         </motion.div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <motion.p
