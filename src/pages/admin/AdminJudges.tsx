@@ -118,7 +118,10 @@ const AdminJudges = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-serif text-2xl text-foreground">Judges</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-serif text-2xl text-foreground">Judges</h1>
+        <Button size="sm" onClick={() => { setSelected(emptyJudge); setIsCreating(true); }}><Plus size={16} className="mr-1" /> New Judge</Button>
+      </div>
       <div className="flex flex-wrap gap-3">
         <Select value={filterRole} onValueChange={setFilterRole}>
           <SelectTrigger className="w-[150px] bg-secondary border-border text-sm"><SelectValue placeholder="Role" /></SelectTrigger>
