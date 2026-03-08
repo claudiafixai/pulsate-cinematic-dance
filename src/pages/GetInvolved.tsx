@@ -84,6 +84,11 @@ const GetInvolved = () => {
             </motion.div>
           ))}
         </div>
+        <div className="text-center mt-10">
+          <a href="/sponsor" className="btn-primary px-8 py-3.5 rounded-full text-sm inline-flex items-center justify-center min-h-[44px]">
+            {t("involved.sponsorship.cta")}
+          </a>
+        </div>
       </Section>
 
       <Section variant="alt" id="merch">
