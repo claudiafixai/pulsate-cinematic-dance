@@ -14,6 +14,7 @@ import Workshops from "./pages/Workshops";
 import Premiere from "./pages/Premiere";
 import GetInvolved from "./pages/GetInvolved";
 import NotFound from "./pages/NotFound";
+import Register from "./pages/Register";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -47,6 +48,7 @@ const PublicLayout = () => {
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/premiere" element={<Premiere />} />
           <Route path="/get-involved" element={<GetInvolved />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
