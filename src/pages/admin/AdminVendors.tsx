@@ -95,7 +95,10 @@ const AdminVendors = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-serif text-2xl text-foreground">Vendors</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-serif text-2xl text-foreground">Vendors</h1>
+        <Button size="sm" onClick={() => { setSelected(emptyVendor); setIsCreating(true); }}><Plus size={16} className="mr-1" /> New Vendor</Button>
+      </div>
       <div className="flex flex-wrap gap-3">
         <Select value={filterType} onValueChange={setFilterType}>
           <SelectTrigger className="w-[180px] bg-secondary border-border text-sm"><SelectValue placeholder="Type" /></SelectTrigger>
