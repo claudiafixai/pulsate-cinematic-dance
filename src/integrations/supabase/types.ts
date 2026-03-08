@@ -20,6 +20,7 @@ export type Database = {
           created_at: string | null
           dance_style: string | null
           email: string
+          group_name: string | null
           group_size: number | null
           group_type: string | null
           id: string
@@ -27,6 +28,10 @@ export type Database = {
           language: string | null
           level: string | null
           name: string
+          parent_guardian_email: string | null
+          parent_guardian_name: string | null
+          pass_price: number | null
+          pass_type: string | null
           payment_status: string | null
           phone: string | null
           status: string | null
@@ -40,6 +45,7 @@ export type Database = {
           created_at?: string | null
           dance_style?: string | null
           email: string
+          group_name?: string | null
           group_size?: number | null
           group_type?: string | null
           id?: string
@@ -47,6 +53,10 @@ export type Database = {
           language?: string | null
           level?: string | null
           name: string
+          parent_guardian_email?: string | null
+          parent_guardian_name?: string | null
+          pass_price?: number | null
+          pass_type?: string | null
           payment_status?: string | null
           phone?: string | null
           status?: string | null
@@ -60,6 +70,7 @@ export type Database = {
           created_at?: string | null
           dance_style?: string | null
           email?: string
+          group_name?: string | null
           group_size?: number | null
           group_type?: string | null
           id?: string
@@ -67,6 +78,10 @@ export type Database = {
           language?: string | null
           level?: string | null
           name?: string
+          parent_guardian_email?: string | null
+          parent_guardian_name?: string | null
+          pass_price?: number | null
+          pass_type?: string | null
           payment_status?: string | null
           phone?: string | null
           status?: string | null
