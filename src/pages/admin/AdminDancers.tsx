@@ -18,6 +18,8 @@ const AdminDancers = () => {
   const [filterAge, setFilterAge] = useState<string>("all");
   const [filterLevel, setFilterLevel] = useState<string>("all");
   const [selected, setSelected] = useState<any>(null);
+  const [signedVideoUrl, setSignedVideoUrl] = useState<string | null>(null);
+  const [videoUrlError, setVideoUrlError] = useState<string | null>(null);
   const [emailDialog, setEmailDialog] = useState<{ open: boolean; dancer: any; newStatus: string }>({ open: false, dancer: null, newStatus: "" });
   const { toast } = useToast();
   const qc = useQueryClient();
