@@ -12,10 +12,13 @@ import AdminDetailPanel from "@/components/admin/AdminDetailPanel";
 const typeOptions = ["Production Sponsor", "Creative Collaborator", "Community Partner"];
 const statusOptions = ["Prospect", "Proposal Sent", "Confirmed", "Invoiced", "Paid"];
 
+const emptyVendor = { organization: "", contact_name: "", email: "", type: "Production Sponsor", package: "Community", status: "Prospect", contract_signed: false, language: "fr", internal_notes: "" };
+
 const AdminVendors = () => {
   const [filterType, setFilterType] = useState<string>("all");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [selected, setSelected] = useState<any>(null);
+  const [isCreating, setIsCreating] = useState(false);
   const { toast } = useToast();
   const qc = useQueryClient();
 
