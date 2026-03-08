@@ -41,13 +41,13 @@ const CountdownTimer = () => {
   ];
 
   return (
-    <div className="flex gap-4 sm:gap-8">
+    <div className="flex gap-3 sm:gap-8">
       {units.map((u) => (
-        <div key={u.label} className="text-center">
-          <div className="text-3xl sm:text-5xl font-bold font-serif gold-gradient-text tabular-nums">
+        <div key={u.label} className="text-center min-w-0 flex-1 sm:flex-none">
+          <div className="text-2xl sm:text-5xl font-bold font-serif gold-gradient-text tabular-nums">
             {String(u.value).padStart(2, "0")}
           </div>
-          <div className="text-[10px] sm:text-xs text-muted-foreground mt-2 uppercase tracking-[0.2em]">{u.label}</div>
+          <div className="text-[10px] sm:text-xs text-muted-foreground mt-2 uppercase tracking-[0.15em] sm:tracking-[0.2em]">{u.label}</div>
         </div>
       ))}
     </div>
@@ -239,7 +239,7 @@ const Index = () => {
       {/* Team */}
       <Section variant="alt">
         <SectionHeading tag={t("index.team.tag")} title={t("index.team.title")} center />
-        <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
           {team.map((m, i) => (
             <motion.div key={m.name} className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/15 flex items-center justify-center border border-primary/20">

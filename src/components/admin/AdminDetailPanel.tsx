@@ -30,7 +30,7 @@ const AdminDetailPanel = ({ title, fields, data, onSave, onClose }: Props) => {
   return (
     <>
       <div className="fixed inset-0 z-40 bg-background/60" onClick={onClose} />
-      <div className="fixed right-0 top-0 z-50 h-full w-full max-w-md bg-card border-l border-border overflow-y-auto shadow-2xl">
+      <div className="fixed right-0 top-0 z-50 h-full w-full md:max-w-md bg-card border-l border-border overflow-y-auto shadow-2xl">
         <div className="flex items-center justify-between p-5 border-b border-border sticky top-0 bg-card z-10">
           <h2 className="font-serif text-lg text-foreground">{title}</h2>
           <button onClick={onClose}><X size={20} className="text-muted-foreground" /></button>

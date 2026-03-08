@@ -113,7 +113,7 @@ const Navbar = () => {
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="lg:hidden bg-background/95 backdrop-blur-xl border-t border-border overflow-hidden"
           >
-            <div className="px-4 py-6 space-y-4">
+            <div className="px-4 py-6 space-y-1">
               {navLinks.map((link, i) => (
                 <motion.div
                   key={link.to}
@@ -124,7 +124,7 @@ const Navbar = () => {
                   <Link
                     to={link.to}
                     onClick={() => setOpen(false)}
-                    className={`block text-base font-medium transition-colors hover:text-primary ${
+                    className={`block text-base font-medium transition-colors hover:text-primary min-h-[44px] flex items-center ${
                       location.pathname === link.to ? "text-primary" : "text-foreground/70"
                     }`}
                   >
@@ -134,10 +134,10 @@ const Navbar = () => {
               ))}
 
               {/* Mobile language toggle */}
-              <div className="flex items-center gap-2 pt-2">
+              <div className="flex items-center gap-2 pt-3 pb-2">
                 <button
                   onClick={() => setLanguage("fr")}
-                  className={`text-sm font-medium px-3 py-1.5 rounded-full transition-all ${
+                  className={`text-sm font-medium min-w-[44px] min-h-[44px] px-3 py-1.5 rounded-full transition-all flex items-center justify-center ${
                     language === "fr"
                       ? "text-primary border border-primary/30"
                       : "text-foreground/40"
@@ -147,7 +147,7 @@ const Navbar = () => {
                 </button>
                 <button
                   onClick={() => setLanguage("en")}
-                  className={`text-sm font-medium px-3 py-1.5 rounded-full transition-all ${
+                  className={`text-sm font-medium min-w-[44px] min-h-[44px] px-3 py-1.5 rounded-full transition-all flex items-center justify-center ${
                     language === "en"
                       ? "text-primary border border-primary/30"
                       : "text-foreground/40"
@@ -160,7 +160,7 @@ const Navbar = () => {
               <Link
                 to="/get-involved"
                 onClick={() => setOpen(false)}
-                className="btn-primary px-6 py-2.5 text-sm rounded-full"
+                className="btn-primary px-6 py-3 text-sm rounded-full min-h-[44px] flex items-center justify-center"
               >
                 {t("nav.getTickets")}
               </Link>

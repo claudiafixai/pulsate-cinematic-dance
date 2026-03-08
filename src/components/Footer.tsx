@@ -65,15 +65,15 @@ const Footer = () => {
           <div>
             <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">{t("footer.stayConnected")}</h4>
             <p className="text-sm text-muted-foreground mb-4">{t("footer.stayConnectedDesc")}</p>
-            <div className="flex gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="email"
                 placeholder={t("footer.emailPlaceholder")}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 px-3 py-2.5 text-sm bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all"
+                className="w-full sm:flex-1 px-3 py-2.5 text-sm bg-muted border border-border rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all min-h-[44px]"
               />
-              <button onClick={handleSubmit} disabled={loading} className="btn-primary px-4 py-2.5 text-sm rounded-lg disabled:opacity-50">
+              <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full sm:w-auto px-4 py-2.5 text-sm rounded-lg disabled:opacity-50 min-h-[44px]">
                 {loading ? t("common.loading") : t("footer.join")}
               </button>
             </div>

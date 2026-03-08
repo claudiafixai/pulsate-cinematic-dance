@@ -42,9 +42,9 @@ const Premiere = () => {
         title={t("premiere.hero.title")}
         description={t("premiere.hero.description")}
       >
-        <div className="flex flex-wrap gap-4">
-          <a href="#tickets" className="btn-primary px-8 py-3.5 rounded-full text-sm">{t("premiere.hero.ticketUpdates")}</a>
-          <a href="#awards" className="btn-outline px-8 py-3.5 rounded-full text-sm">{t("premiere.hero.viewAwards")}</a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#tickets" className="btn-primary px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("premiere.hero.ticketUpdates")}</a>
+          <a href="#awards" className="btn-outline px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("premiere.hero.viewAwards")}</a>
         </div>
       </PageHero>
 
@@ -82,9 +82,9 @@ const Premiere = () => {
       <Section id="tickets">
         <div className="max-w-xl mx-auto text-center">
           <SectionHeading tag={t("premiere.tickets.tag")} title={t("premiere.tickets.title")} center />
-          <div className="flex gap-3">
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t("premiere.tickets.placeholder")} className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all" />
-            <button onClick={handleSubmit} disabled={loading} className="btn-primary px-6 py-3 rounded-xl text-sm disabled:opacity-50">{loading ? t("common.loading") : t("premiere.tickets.button")}</button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t("premiere.tickets.placeholder")} className="w-full sm:flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all min-h-[44px]" />
+            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full sm:w-auto px-6 py-3 rounded-xl text-sm disabled:opacity-50 min-h-[44px]">{loading ? t("common.loading") : t("premiere.tickets.button")}</button>
           </div>
         </div>
       </Section>

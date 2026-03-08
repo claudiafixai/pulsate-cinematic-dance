@@ -53,7 +53,7 @@ const About = () => {
 
       <Section variant="alt">
         <SectionHeading tag={t("about.values.tag")} title={t("about.values.title")} center />
-        <div className="grid sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {values.map((v, i) => (
             <motion.div key={v.title} className="p-8 rounded-2xl bg-card border border-border text-center card-glow hover:-translate-y-2 transition-all duration-500" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.12 }}>
               <div className="w-14 h-14 mx-auto mb-5 rounded-xl bg-primary/10 flex items-center justify-center">
@@ -69,7 +69,7 @@ const About = () => {
       <Section>
         <SectionHeading tag={t("about.journey.tag")} title={t("about.journey.title")} center />
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">{t("about.journey.intro")}</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {journey.map((j, i) => (
             <motion.div key={j.step} className="relative p-6 rounded-2xl bg-card border border-border hover:-translate-y-1 transition-all duration-400" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
               <span className="text-4xl font-bold font-serif gold-gradient-text opacity-50">{j.step}</span>

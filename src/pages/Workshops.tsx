@@ -41,9 +41,9 @@ const Workshops = () => {
         title={t("workshops.hero.title")}
         description={t("workshops.hero.description")}
       >
-        <div className="flex flex-wrap gap-4">
-          <a href="#pricing" className="btn-primary px-8 py-3.5 rounded-full text-sm">{t("workshops.hero.fullDay")}</a>
-          <a href="#pricing" className="btn-outline px-8 py-3.5 rounded-full text-sm">{t("workshops.hero.dropIn")}</a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#pricing" className="btn-primary px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("workshops.hero.fullDay")}</a>
+          <a href="#pricing" className="btn-outline px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("workshops.hero.dropIn")}</a>
         </div>
       </PageHero>
 
@@ -63,11 +63,11 @@ const Workshops = () => {
         <SectionHeading tag={t("workshops.schedule.tag")} title={t("workshops.schedule.title")} center />
         <div className="max-w-2xl mx-auto space-y-3">
           {timeline.map((item, i) => (
-            <motion.div key={i} className="flex items-center gap-6 p-5 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
-              <div className="text-primary font-mono text-sm font-semibold whitespace-nowrap w-36 shrink-0">{item.time}</div>
+            <motion.div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-4 sm:p-5 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+              <div className="text-primary font-mono text-sm font-semibold whitespace-nowrap sm:w-36 shrink-0">{item.time}</div>
               <div className="divider-gold w-8 shrink-0 hidden sm:block" />
               <div>
-                <h4 className="font-bold">{item.title}</h4>
+                <h4 className="font-bold text-sm sm:text-base">{item.title}</h4>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
             </motion.div>
@@ -96,9 +96,9 @@ const Workshops = () => {
       <Section variant="alt">
         <div className="max-w-xl mx-auto text-center">
           <SectionHeading tag={t("workshops.notify.tag")} title={t("workshops.notify.title")} center />
-          <div className="flex gap-3">
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t("workshops.notify.placeholder")} className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all" />
-            <button onClick={handleSubmit} disabled={loading} className="btn-primary px-6 py-3 rounded-xl text-sm disabled:opacity-50">{loading ? t("common.loading") : t("workshops.notify.button")}</button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t("workshops.notify.placeholder")} className="w-full sm:flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all min-h-[44px]" />
+            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full sm:w-auto px-6 py-3 rounded-xl text-sm disabled:opacity-50 min-h-[44px]">{loading ? t("common.loading") : t("workshops.notify.button")}</button>
           </div>
         </div>
       </Section>
