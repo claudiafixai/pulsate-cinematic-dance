@@ -48,7 +48,31 @@ const AdminJudges = () => {
     },
   });
 
+  const insertMutation = useMutation({
+    mutationFn: async (newJudge: any) => {
+      const { error, data } = await supabase.from("judges").insert(newJudge).select().single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: async (data) => {
+      qc.invalidateQueries({ queryKey: ["admin-judges"] });
+      qc.invalidateQueries({ queryKey: ["admin-judge-count"] });
+      toast({ title: "Judge created" });
+      try {
+        await supabase.functions.invoke("send-email", {
+          body: { email: data.email, source: "judge-invitation", name: data.name },
+        });
+      } catch { /* edge function handles logging */ }
+      setIsCreating(false);
+    },
+  });
+
   const handleSave = (data: any) => {
+    if (isCreating) {
+      const { id, ...rest } = data;
+      insertMutation.mutate(rest);
+      return;
+    }
     const oldStatus = selected?.status;
     if (data.status !== oldStatus) {
       setEmailDialog({ open: true, judge: data, newStatus: data.status });
