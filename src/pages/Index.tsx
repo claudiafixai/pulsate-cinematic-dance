@@ -243,8 +243,12 @@ const Index = () => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
           {team.map((m, i) => (
             <motion.div key={m.name} className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/15 flex items-center justify-center border border-primary/20">
-                <span className="text-2xl font-serif font-bold gold-gradient-text">{m.name.split(" ").map(n => n[0]).join("")}</span>
+              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/15 flex items-center justify-center border border-primary/20 overflow-hidden">
+                {m.name === "Carlos Alejandro" ? (
+                  <img src={carlosImg} alt={m.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-2xl font-serif font-bold gold-gradient-text">{m.name.split(" ").map(n => n[0]).join("")}</span>
+                )}
               </div>
               <h4 className="font-semibold">{m.name}</h4>
               <p className="text-sm text-muted-foreground mt-1">{m.role}</p>
