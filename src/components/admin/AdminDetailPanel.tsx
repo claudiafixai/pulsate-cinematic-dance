@@ -20,9 +20,10 @@ interface Props {
   data: Record<string, any>;
   onSave: (data: Record<string, any>) => void;
   onClose: () => void;
+  extraContent?: React.ReactNode;
 }
 
-const AdminDetailPanel = ({ title, fields, data, onSave, onClose }: Props) => {
+const AdminDetailPanel = ({ title, fields, data, onSave, onClose, extraContent }: Props) => {
   const [form, setForm] = useState({ ...data });
 
   const set = (key: string, value: any) => setForm((p) => ({ ...p, [key]: value }));
