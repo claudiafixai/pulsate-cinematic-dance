@@ -42,9 +42,9 @@ const Premiere = () => {
         title={t("premiere.hero.title")}
         description={t("premiere.hero.description")}
       >
-        <div className="flex flex-wrap gap-4">
-          <a href="#tickets" className="btn-primary px-8 py-3.5 rounded-full text-sm">{t("premiere.hero.ticketUpdates")}</a>
-          <a href="#awards" className="btn-outline px-8 py-3.5 rounded-full text-sm">{t("premiere.hero.viewAwards")}</a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#tickets" className="btn-primary px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("premiere.hero.ticketUpdates")}</a>
+          <a href="#awards" className="btn-outline px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("premiere.hero.viewAwards")}</a>
         </div>
       </PageHero>
 
