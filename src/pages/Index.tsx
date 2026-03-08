@@ -89,7 +89,7 @@ const Index = () => {
   return (
     <main>
       <PageHero
-        image={heroImg}
+        vimeoId="1171551147"
         tag={t("index.hero.tag")}
         title={t("index.hero.title")}
         description={t("index.hero.description")}
