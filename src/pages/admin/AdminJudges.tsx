@@ -13,10 +13,13 @@ import StatusEmailDialog from "@/components/admin/StatusEmailDialog";
 const roleOptions = ["Judge", "Workshop Artist", "Both"];
 const statusOptions = ["Invited", "Confirmed", "Declined"];
 
+const emptyJudge = { name: "", email: "", bio: "", specialty: "", role: "Judge", status: "Invited", contract_signed: false, language: "fr", internal_notes: "" };
+
 const AdminJudges = () => {
   const [filterRole, setFilterRole] = useState<string>("all");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [selected, setSelected] = useState<any>(null);
+  const [isCreating, setIsCreating] = useState(false);
   const [emailDialog, setEmailDialog] = useState<{ open: boolean; judge: any; newStatus: string }>({ open: false, judge: null, newStatus: "" });
   const { toast } = useToast();
   const qc = useQueryClient();
