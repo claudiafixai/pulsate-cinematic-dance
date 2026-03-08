@@ -38,7 +38,6 @@ const CountdownTimer = () => {
     { label: t("index.countdown.days"), value: timeLeft.days },
     { label: t("index.countdown.hours"), value: timeLeft.hours },
     { label: t("index.countdown.minutes"), value: timeLeft.minutes },
-    { label: t("index.countdown.seconds"), value: timeLeft.seconds },
   ];
 
   return (
@@ -103,8 +102,12 @@ const Index = () => {
           </Link>
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">{t("index.hero.registrationOpens")}</p>
+          <p className="text-lg sm:text-xl font-bold mb-2">{t("index.countdown.headline")}</p>
+          <p className="text-sm text-muted-foreground mb-6 max-w-md">{t("index.countdown.subheadline")}</p>
           <CountdownTimer />
+          <Link to="/competition" className="btn-outline px-6 py-2.5 rounded-full text-sm mt-6 inline-block">
+            {t("index.countdown.cta")}
+          </Link>
         </div>
       </PageHero>
 

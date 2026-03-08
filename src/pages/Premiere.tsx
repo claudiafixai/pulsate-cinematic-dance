@@ -59,6 +59,11 @@ const Premiere = () => {
           ))}
         </div>
         <p className="text-sm text-muted-foreground mt-8">{t("premiere.film.note")}</p>
+
+        <motion.div className="mt-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
+          <h3 className="text-xl sm:text-2xl font-bold font-serif mb-4">{t("premiere.cinema.title")}</h3>
+          <p className="text-muted-foreground leading-relaxed max-w-3xl">{t("premiere.cinema.body")}</p>
+        </motion.div>
       </Section>
 
       <Section variant="alt" id="awards">
