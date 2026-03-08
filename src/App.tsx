@@ -15,6 +15,7 @@ import Premiere from "./pages/Premiere";
 import GetInvolved from "./pages/GetInvolved";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
+import ApplyJudge from "./pages/ApplyJudge";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -49,6 +50,7 @@ const PublicLayout = () => {
           <Route path="/premiere" element={<Premiere />} />
           <Route path="/get-involved" element={<GetInvolved />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/apply-judge" element={<ApplyJudge />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
