@@ -70,7 +70,7 @@ const GetInvolved = () => {
       <Section id="sponsors">
         <SectionHeading tag={t("involved.sponsorship.tag")} title={t("involved.sponsorship.title")} center />
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">{t("involved.sponsorship.description")}</p>
-        <div className="grid sm:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
           {tiers.map((tier, i) => (
             <motion.div key={tier.name} className={`p-8 rounded-2xl border text-center hover:-translate-y-2 transition-all duration-500 ${tier.highlighted ? "bg-card border-primary card-glow animate-pulse-glow" : "bg-card border-border card-glow"}`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
               <div className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center"><tier.icon className="text-primary" size={26} /></div>

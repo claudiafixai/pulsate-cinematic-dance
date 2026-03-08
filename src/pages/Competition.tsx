@@ -110,9 +110,9 @@ const Competition = () => {
       <Section variant="alt" id="register">
         <div className="max-w-xl mx-auto text-center">
           <SectionHeading tag={t("comp.notify.tag")} title={t("comp.notify.title")} center />
-          <div className="flex gap-3">
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t("comp.notify.placeholder")} className="flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all" />
-            <button onClick={handleSubmit} disabled={loading} className="btn-primary px-6 py-3 rounded-xl text-sm disabled:opacity-50">{loading ? t("common.loading") : t("comp.notify.button")}</button>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder={t("comp.notify.placeholder")} className="w-full sm:flex-1 px-4 py-3 bg-muted border border-border rounded-xl text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-primary transition-all min-h-[44px]" />
+            <button onClick={handleSubmit} disabled={loading} className="btn-primary w-full sm:w-auto px-6 py-3 rounded-xl text-sm disabled:opacity-50 min-h-[44px]">{loading ? t("common.loading") : t("comp.notify.button")}</button>
           </div>
         </div>
       </Section>

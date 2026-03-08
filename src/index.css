@@ -65,16 +65,31 @@
     @apply border-border;
   }
 
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 
   ::selection {
     background: hsl(32, 30%, 50%, 0.3);
+  }
+
+  /* Mobile typography caps */
+  @media (max-width: 479px) {
+    h1 { font-size: clamp(1.5rem, 7vw, 2rem) !important; }
+    h2 { font-size: clamp(1.25rem, 6vw, 1.75rem) !important; }
+    p, li, span, a { font-size: max(0.9375rem, 1em); }
   }
 }
 

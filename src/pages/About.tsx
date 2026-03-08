@@ -69,7 +69,7 @@ const About = () => {
       <Section>
         <SectionHeading tag={t("about.journey.tag")} title={t("about.journey.title")} center />
         <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">{t("about.journey.intro")}</p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {journey.map((j, i) => (
             <motion.div key={j.step} className="relative p-6 rounded-2xl bg-card border border-border hover:-translate-y-1 transition-all duration-400" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}>
               <span className="text-4xl font-bold font-serif gold-gradient-text opacity-50">{j.step}</span>
