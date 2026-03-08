@@ -62,6 +62,7 @@ const AdminDetailPanel = ({ title, fields, data, onSave, onClose, extraContent }
               )}
             </div>
           ))}
+          {extraContent}
           <Button onClick={() => onSave(form)} className="w-full btn-primary rounded-full mt-6">Save Changes</Button>
         </div>
       </div>
