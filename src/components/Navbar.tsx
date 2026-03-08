@@ -3,19 +3,21 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/pulsate-logo.png";
-
-const navLinks = [
-  { label: "About", to: "/about" },
-  { label: "Competition", to: "/competition" },
-  { label: "Workshops & Seminars", to: "/workshops" },
-  { label: "Premiere & Awards", to: "/premiere" },
-  { label: "Get Involved", to: "/get-involved" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { language, setLanguage, t } = useLanguage();
+
+  const navLinks = [
+    { label: t("nav.about"), to: "/about" },
+    { label: t("nav.competition"), to: "/competition" },
+    { label: t("nav.workshops"), to: "/workshops" },
+    { label: t("nav.premiere"), to: "/premiere" },
+    { label: t("nav.getInvolved"), to: "/get-involved" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -58,12 +60,37 @@ const Navbar = () => {
             ))}
           </div>
 
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center gap-4">
+            {/* Language Toggle */}
+            <div className="flex items-center gap-1 text-xs font-medium">
+              <button
+                onClick={() => setLanguage("fr")}
+                className={`px-2 py-1 rounded transition-all duration-300 ${
+                  language === "fr"
+                    ? "text-primary border-b border-primary"
+                    : "text-foreground/40 hover:text-foreground/70"
+                }`}
+              >
+                FR
+              </button>
+              <span className="text-foreground/20">|</span>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`px-2 py-1 rounded transition-all duration-300 ${
+                  language === "en"
+                    ? "text-primary border-b border-primary"
+                    : "text-foreground/40 hover:text-foreground/70"
+                }`}
+              >
+                EN
+              </button>
+            </div>
+
             <Link
               to="/get-involved"
               className="btn-primary px-6 py-2.5 text-sm rounded-full"
             >
-              Get Tickets
+              {t("nav.getTickets")}
             </Link>
           </div>
 
@@ -105,12 +132,37 @@ const Navbar = () => {
                   </Link>
                 </motion.div>
               ))}
+
+              {/* Mobile language toggle */}
+              <div className="flex items-center gap-2 pt-2">
+                <button
+                  onClick={() => setLanguage("fr")}
+                  className={`text-sm font-medium px-3 py-1.5 rounded-full transition-all ${
+                    language === "fr"
+                      ? "text-primary border border-primary/30"
+                      : "text-foreground/40"
+                  }`}
+                >
+                  FR
+                </button>
+                <button
+                  onClick={() => setLanguage("en")}
+                  className={`text-sm font-medium px-3 py-1.5 rounded-full transition-all ${
+                    language === "en"
+                      ? "text-primary border border-primary/30"
+                      : "text-foreground/40"
+                  }`}
+                >
+                  EN
+                </button>
+              </div>
+
               <Link
                 to="/get-involved"
                 onClick={() => setOpen(false)}
                 className="btn-primary px-6 py-2.5 text-sm rounded-full"
               >
-                Get Tickets
+                {t("nav.getTickets")}
               </Link>
             </div>
           </motion.div>

@@ -24,6 +24,7 @@ export type Database = {
           group_type: string | null
           id: string
           internal_notes: string | null
+          language: string | null
           level: string | null
           name: string
           payment_status: string | null
@@ -43,6 +44,7 @@ export type Database = {
           group_type?: string | null
           id?: string
           internal_notes?: string | null
+          language?: string | null
           level?: string | null
           name: string
           payment_status?: string | null
@@ -62,6 +64,7 @@ export type Database = {
           group_type?: string | null
           id?: string
           internal_notes?: string | null
+          language?: string | null
           level?: string | null
           name?: string
           payment_status?: string | null
@@ -133,6 +136,7 @@ export type Database = {
           email: string
           id: string
           internal_notes: string | null
+          language: string | null
           name: string
           role: string | null
           specialty: string | null
@@ -145,6 +149,7 @@ export type Database = {
           email: string
           id?: string
           internal_notes?: string | null
+          language?: string | null
           name: string
           role?: string | null
           specialty?: string | null
@@ -157,6 +162,7 @@ export type Database = {
           email?: string
           id?: string
           internal_notes?: string | null
+          language?: string | null
           name?: string
           role?: string | null
           specialty?: string | null
@@ -172,6 +178,7 @@ export type Database = {
           email: string
           id: string
           internal_notes: string | null
+          language: string | null
           organization: string
           package: string | null
           status: string | null
@@ -184,6 +191,7 @@ export type Database = {
           email: string
           id?: string
           internal_notes?: string | null
+          language?: string | null
           organization: string
           package?: string | null
           status?: string | null
@@ -196,6 +204,7 @@ export type Database = {
           email?: string
           id?: string
           internal_notes?: string | null
+          language?: string | null
           organization?: string
           package?: string | null
           status?: string | null
