@@ -4,16 +4,21 @@ import { supabase } from "@/integrations/supabase/client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import AdminDetailPanel from "@/components/admin/AdminDetailPanel";
 
 const typeOptions = ["Production Sponsor", "Creative Collaborator", "Community Partner"];
 const statusOptions = ["Prospect", "Proposal Sent", "Confirmed", "Invoiced", "Paid"];
 
+const emptyVendor = { organization: "", contact_name: "", email: "", type: "Production Sponsor", package: "Community", status: "Prospect", contract_signed: false, language: "fr", internal_notes: "" };
+
 const AdminVendors = () => {
   const [filterType, setFilterType] = useState<string>("all");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [selected, setSelected] = useState<any>(null);
+  const [isCreating, setIsCreating] = useState(false);
   const { toast } = useToast();
   const qc = useQueryClient();
 
@@ -41,7 +46,31 @@ const AdminVendors = () => {
     },
   });
 
+  const insertMutation = useMutation({
+    mutationFn: async (newVendor: any) => {
+      const { error, data } = await supabase.from("vendors").insert(newVendor).select().single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: async (data) => {
+      qc.invalidateQueries({ queryKey: ["admin-vendors"] });
+      qc.invalidateQueries({ queryKey: ["admin-vendor-count"] });
+      toast({ title: "Vendor created" });
+      try {
+        await supabase.functions.invoke("send-email", {
+          body: { email: data.email, source: "vendor-kit-sent", name: data.contact_name },
+        });
+      } catch { /* edge function handles logging */ }
+      setIsCreating(false);
+    },
+  });
+
   const handleSave = (data: any) => {
+    if (isCreating) {
+      const { id, ...rest } = data;
+      insertMutation.mutate(rest);
+      return;
+    }
     updateMutation.mutate(data);
     setSelected(null);
   };
@@ -66,7 +95,10 @@ const AdminVendors = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-serif text-2xl text-foreground">Vendors</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-serif text-2xl text-foreground">Vendors</h1>
+        <Button size="sm" onClick={() => { setSelected(emptyVendor); setIsCreating(true); }}><Plus size={16} className="mr-1" /> New Vendor</Button>
+      </div>
       <div className="flex flex-wrap gap-3">
         <Select value={filterType} onValueChange={setFilterType}>
           <SelectTrigger className="w-[180px] bg-secondary border-border text-sm"><SelectValue placeholder="Type" /></SelectTrigger>
@@ -111,7 +143,7 @@ const AdminVendors = () => {
         </Table>
       </div>
 
-      {selected && <AdminDetailPanel title="Vendor Details" fields={fields} data={selected} onSave={handleSave} onClose={() => setSelected(null)} />}
+      {selected && <AdminDetailPanel title={isCreating ? "New Vendor" : "Vendor Details"} fields={fields} data={selected} onSave={handleSave} onClose={() => { setSelected(null); setIsCreating(false); }} />}
     </div>
   );
 };

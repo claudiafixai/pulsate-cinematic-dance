@@ -4,6 +4,8 @@ import { supabase } from "@/integrations/supabase/client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import AdminDetailPanel from "@/components/admin/AdminDetailPanel";
 import StatusEmailDialog from "@/components/admin/StatusEmailDialog";
@@ -11,10 +13,13 @@ import StatusEmailDialog from "@/components/admin/StatusEmailDialog";
 const roleOptions = ["Judge", "Workshop Artist", "Both"];
 const statusOptions = ["Invited", "Confirmed", "Declined"];
 
+const emptyJudge = { name: "", email: "", bio: "", specialty: "", role: "Judge", status: "Invited", contract_signed: false, language: "fr", internal_notes: "" };
+
 const AdminJudges = () => {
   const [filterRole, setFilterRole] = useState<string>("all");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [selected, setSelected] = useState<any>(null);
+  const [isCreating, setIsCreating] = useState(false);
   const [emailDialog, setEmailDialog] = useState<{ open: boolean; judge: any; newStatus: string }>({ open: false, judge: null, newStatus: "" });
   const { toast } = useToast();
   const qc = useQueryClient();
@@ -43,7 +48,31 @@ const AdminJudges = () => {
     },
   });
 
+  const insertMutation = useMutation({
+    mutationFn: async (newJudge: any) => {
+      const { error, data } = await supabase.from("judges").insert(newJudge).select().single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: async (data) => {
+      qc.invalidateQueries({ queryKey: ["admin-judges"] });
+      qc.invalidateQueries({ queryKey: ["admin-judge-count"] });
+      toast({ title: "Judge created" });
+      try {
+        await supabase.functions.invoke("send-email", {
+          body: { email: data.email, source: "judge-invitation", name: data.name },
+        });
+      } catch { /* edge function handles logging */ }
+      setIsCreating(false);
+    },
+  });
+
   const handleSave = (data: any) => {
+    if (isCreating) {
+      const { id, ...rest } = data;
+      insertMutation.mutate(rest);
+      return;
+    }
     const oldStatus = selected?.status;
     if (data.status !== oldStatus) {
       setEmailDialog({ open: true, judge: data, newStatus: data.status });
@@ -89,7 +118,10 @@ const AdminJudges = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-serif text-2xl text-foreground">Judges</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="font-serif text-2xl text-foreground">Judges</h1>
+        <Button size="sm" onClick={() => { setSelected(emptyJudge); setIsCreating(true); }}><Plus size={16} className="mr-1" /> New Judge</Button>
+      </div>
       <div className="flex flex-wrap gap-3">
         <Select value={filterRole} onValueChange={setFilterRole}>
           <SelectTrigger className="w-[150px] bg-secondary border-border text-sm"><SelectValue placeholder="Role" /></SelectTrigger>
@@ -134,7 +166,7 @@ const AdminJudges = () => {
         </Table>
       </div>
 
-      {selected && <AdminDetailPanel title="Judge Details" fields={fields} data={selected} onSave={handleSave} onClose={() => setSelected(null)} />}
+      {selected && <AdminDetailPanel title={isCreating ? "New Judge" : "Judge Details"} fields={fields} data={selected} onSave={handleSave} onClose={() => { setSelected(null); setIsCreating(false); }} />}
       <StatusEmailDialog open={emailDialog.open} recipientName={emailDialog.judge?.name} newStatus={emailDialog.newStatus} onConfirm={handleEmailConfirm} />
     </div>
   );
