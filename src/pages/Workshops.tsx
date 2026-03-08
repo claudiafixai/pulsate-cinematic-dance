@@ -63,11 +63,11 @@ const Workshops = () => {
         <SectionHeading tag={t("workshops.schedule.tag")} title={t("workshops.schedule.title")} center />
         <div className="max-w-2xl mx-auto space-y-3">
           {timeline.map((item, i) => (
-            <motion.div key={i} className="flex items-center gap-6 p-5 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
-              <div className="text-primary font-mono text-sm font-semibold whitespace-nowrap w-36 shrink-0">{item.time}</div>
+            <motion.div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 p-4 sm:p-5 rounded-2xl bg-card border border-border hover:border-primary/20 transition-all duration-300" initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.06 }}>
+              <div className="text-primary font-mono text-sm font-semibold whitespace-nowrap sm:w-36 shrink-0">{item.time}</div>
               <div className="divider-gold w-8 shrink-0 hidden sm:block" />
               <div>
-                <h4 className="font-bold">{item.title}</h4>
+                <h4 className="font-bold text-sm sm:text-base">{item.title}</h4>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
             </motion.div>
