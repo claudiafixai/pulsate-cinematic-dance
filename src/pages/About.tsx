@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Heart, Film, Users, Star, Sparkles } from "lucide-react";
+import idaLogo from "@/assets/logo-ida.jpg";
 import { motion } from "framer-motion";
 import aboutImg from "@/assets/about-dance.jpg";
 import heroImg from "@/assets/hero-dance.jpg";
