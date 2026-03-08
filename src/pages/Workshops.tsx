@@ -41,9 +41,9 @@ const Workshops = () => {
         title={t("workshops.hero.title")}
         description={t("workshops.hero.description")}
       >
-        <div className="flex flex-wrap gap-4">
-          <a href="#pricing" className="btn-primary px-8 py-3.5 rounded-full text-sm">{t("workshops.hero.fullDay")}</a>
-          <a href="#pricing" className="btn-outline px-8 py-3.5 rounded-full text-sm">{t("workshops.hero.dropIn")}</a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#pricing" className="btn-primary px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("workshops.hero.fullDay")}</a>
+          <a href="#pricing" className="btn-outline px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("workshops.hero.dropIn")}</a>
         </div>
       </PageHero>
 
