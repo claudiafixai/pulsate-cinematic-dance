@@ -47,9 +47,9 @@ const Competition = () => {
         title={t("comp.hero.title")}
         description={t("comp.hero.description")}
       >
-        <div className="flex flex-wrap gap-4">
-          <a href="#how-it-works" className="btn-primary px-8 py-3.5 rounded-full text-sm">{t("comp.hero.howItWorks")}</a>
-          <a href="#register" className="btn-outline px-8 py-3.5 rounded-full text-sm">{t("comp.hero.readyToRegister")}</a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#how-it-works" className="btn-primary px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("comp.hero.howItWorks")}</a>
+          <a href="#register" className="btn-outline px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("comp.hero.readyToRegister")}</a>
         </div>
       </PageHero>
 
