@@ -143,7 +143,7 @@ const AdminVendors = () => {
         </Table>
       </div>
 
-      {selected && <AdminDetailPanel title="Vendor Details" fields={fields} data={selected} onSave={handleSave} onClose={() => setSelected(null)} />}
+      {selected && <AdminDetailPanel title={isCreating ? "New Vendor" : "Vendor Details"} fields={fields} data={selected} onSave={handleSave} onClose={() => { setSelected(null); setIsCreating(false); }} />}
     </div>
   );
 };

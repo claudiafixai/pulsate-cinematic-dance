@@ -166,7 +166,7 @@ const AdminJudges = () => {
         </Table>
       </div>
 
-      {selected && <AdminDetailPanel title="Judge Details" fields={fields} data={selected} onSave={handleSave} onClose={() => setSelected(null)} />}
+      {selected && <AdminDetailPanel title={isCreating ? "New Judge" : "Judge Details"} fields={fields} data={selected} onSave={handleSave} onClose={() => { setSelected(null); setIsCreating(false); }} />}
       <StatusEmailDialog open={emailDialog.open} recipientName={emailDialog.judge?.name} newStatus={emailDialog.newStatus} onConfirm={handleEmailConfirm} />
     </div>
   );
