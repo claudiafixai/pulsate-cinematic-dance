@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShoppingBag, Mail, Phone, Star, Zap, Crown } from "lucide-react";
+import { ShoppingBag, Mail, Star, Zap, Crown } from "lucide-react";
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
@@ -11,14 +11,14 @@ const tiers = [
   {
     icon: Star,
     name: "Community Partner",
-    price: "From $250",
+    price: "From $1,250",
     features: ["Logo on website", "Social media mentions", "Event access passes"],
   },
   {
     icon: Zap,
-    name: "Gold Sponsor",
-    price: "From $1,000",
-    features: ["Logo on all materials", "VIP premiere access", "Workshop branding", "Dedicated social campaign"],
+    name: "Gold Partner",
+    price: "From $4,000",
+    features: ["Named sponsor for award category", "VIP premiere access", "Workshop branding", "Dedicated social campaign"],
     highlighted: true,
   },
   {
@@ -31,7 +31,7 @@ const tiers = [
 
 const merchandise = [
   { name: "Pulsate T-Shirt", price: "$35" },
-  { name: "Pulsate Hoodie", price: "$65" },
+  { name: "Pulsate Hoodie", price: "$55" },
   { name: "Dance Bag", price: "$45" },
   { name: "Limited Edition Poster", price: "$20" },
 ];
@@ -162,12 +162,9 @@ const GetInvolved = () => {
               {loading ? "Sending..." : "Send Message"}
             </button>
           </div>
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center text-sm text-muted-foreground">
+          <div className="mt-8 flex justify-center text-sm text-muted-foreground">
             <a href="mailto:info@pulsateproject.ca" className="flex items-center gap-2 hover:text-primary transition-colors duration-300">
               <Mail size={14} className="text-primary/60" /> info@pulsateproject.ca
-            </a>
-            <a href="tel:+15146194119" className="flex items-center gap-2 hover:text-primary transition-colors duration-300">
-              <Phone size={14} className="text-primary/60" /> +1 514 619-4119
             </a>
           </div>
         </div>

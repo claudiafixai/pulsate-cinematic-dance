@@ -9,7 +9,7 @@ import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
 const filmDetails = [
   "Feature-length dance film with finalist pieces and collective creations",
-  "Premiere at a cinema in Laval, Quebec (Cineplex location)",
+  "Premiere at a movie theater in Laval, Quebec",
   "Awards ceremony celebrating dancers, stories, and innovation",
   "VIP Glow-Up Lounge for elevated photos, networking, and celebration",
 ];
@@ -38,7 +38,7 @@ const Premiere = () => {
         image={premiereImg}
         tag="Premiere & Awards"
         title="Where the Pulsate journey meets the big screen"
-        description="After months of creation, filming, and community, Pulsate comes together as a feature-length dance film premiering in December 2026 at a Cineplex theater in Laval, Quebec."
+        description="After months of creation, filming, and community, Pulsate comes together as a feature-length dance film premiering in December 2026 at a movie theater in Laval, Quebec."
       >
         <div className="flex flex-wrap gap-4">
           <a href="#tickets" className="btn-primary px-8 py-3.5 rounded-full text-sm">
@@ -68,7 +68,7 @@ const Premiere = () => {
           ))}
         </div>
         <p className="text-sm text-muted-foreground mt-8">
-          Exact premiere date and final Cineplex Laval details will be announced closer to December 2026.
+          Exact premiere date and movie theater details will be announced closer to December 2026.
         </p>
       </Section>
 

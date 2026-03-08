@@ -9,13 +9,12 @@ import logoClaudiaOps from "@/assets/logo-claudiaops.png";
 import logoSpaMobile from "@/assets/logo-spa-mobile.jpg";
 import logoStudioJolieMoi from "@/assets/logo-studio-jolie-moi.jpg";
 import logoAlkimia from "@/assets/logo-alkimia.png";
-import logoCineplex from "@/assets/logo-cineplex.png";
 import PageHero from "@/components/PageHero";
 import Section from "@/components/Section";
 import SectionHeading from "@/components/SectionHeading";
 
 const CountdownTimer = () => {
-  const target = new Date("2026-03-31T00:00:00").getTime();
+  const target = new Date("2026-03-15T00:00:00").getTime();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
@@ -58,7 +57,7 @@ const opportunities = [
   { icon: Users, title: "Dancers", desc: "Submit your work and grow as an artist on the big screen." },
   { icon: Award, title: "Sponsors", desc: "Support the arts and gain visibility in the dance community." },
   { icon: Eye, title: "Judges", desc: "Help shape the future of dance film with your expertise." },
-  { icon: Clapperboard, title: "Audience", desc: "Experience a premiere like no other at Cineplex Laval." },
+  { icon: Clapperboard, title: "Audience", desc: "Experience a premiere like no other at the movie theater." },
 ];
 
 const faqs = [
@@ -66,16 +65,16 @@ const faqs = [
   { q: "How do I submit my video?", a: "After registration, you'll receive access to our submission portal. Upload your dance video following our guidelines before the deadline." },
   { q: "What styles of dance are accepted?", a: "All styles are welcome — contemporary, hip-hop, ballet, jazz, cultural dances, freestyle, and more." },
   { q: "Is there an age requirement?", a: "No age requirement. Pulsate is multi-age and designed for everyone from young dancers to adults." },
-  { q: "Where is the premiere held?", a: "The premiere will be held at a Cineplex theater in Laval, Quebec in December 2026." },
+  { q: "Where is the premiere held?", a: "The premiere will be held at a movie theater in Laval, Quebec in December 2026." },
   { q: "How much does it cost to enter?", a: "Registration fees vary by category. Visit the Competition page for detailed pricing." },
   { q: "Can I attend the workshops online?", a: "Yes! Workshops run in parallel — in-studio in Laval and online seminars during the same time blocks." },
   { q: "How are winners selected?", a: "A panel of judges evaluates entries based on storytelling, cinematic presence, creativity, and emotional impact." },
 ];
 
 const team = [
-  { name: "Barbara Villavicencio", role: "Founder & Creative Director" },
-  { name: "Carlos Alejandro", role: "Co-Director & Brand Lead" },
-  { name: "Patty Isabelle Jean Baptiste", role: "Community & Operations" },
+  { name: "Barbara Villavicencio", role: "Co-founder & Creative Director" },
+  { name: "Carlos Alejandro", role: "Co-founder & Brand Lead" },
+  { name: "Patty Isabelle Jean Baptiste", role: "Co-founder & Executive Director" },
 ];
 
 const Index = () => {
@@ -88,9 +87,9 @@ const Index = () => {
     <main>
       <PageHero
         image={heroImg}
-        tag="Pulsate 2026"
+        tag="Presented by the International Dance Association"
         title="Where dance meets film and community"
-        description="A cinematic dance competition designed for the big screen. Submit your art, grow as an artist, and premiere in a real movie theater."
+        description="Pulsate is a bucket-list dance film experience — the kind of once-in-a-lifetime creative journey every dancer dreams of. A bucket list is about the experiences you must have before the curtain falls. Pulsate exists to create real opportunities for dancers and give emerging artists a platform to be seen on the big screen."
       >
         <div className="flex flex-col sm:flex-row gap-4 mb-10">
           <Link to="/competition" className="btn-primary px-8 py-3.5 rounded-full text-sm">
@@ -101,7 +100,7 @@ const Index = () => {
           </Link>
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Registration opens March 31, 2026</p>
+          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Registration opens March 15, 2026</p>
           <CountdownTimer />
         </div>
       </PageHero>
@@ -160,7 +159,7 @@ const Index = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            <SectionHeading tag="About Pulsate" title="A dance film project for every passionate mover" />
+            <SectionHeading tag="About Pulsate" title="A bucket-list dance film experience for every passionate mover" />
             <p className="text-muted-foreground leading-relaxed mb-8">
               Pulsate is a hybrid dance and film project created to help passionate dancers grow in their art, feel empowered, and share the experience with their community. From first video submission to the movie theater premiere, the journey is designed to be fun, supportive, and open to all levels, ages, and styles.
             </p>
@@ -190,9 +189,9 @@ const Index = () => {
         </div>
       </Section>
 
-      {/* Brand Partners */}
+      {/* Sponsors */}
       <Section>
-        <SectionHeading tag="Brand Partners" title="Powered by passionate partners" center />
+        <SectionHeading tag="Sponsors" title="Powered by passionate sponsors" center />
         <div className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto mb-16">
           {[
             { name: "Danse Alejandro", logo: logoDanseAlejandro, url: "https://www.dansealejandro.com/", bg: "bg-white" },
@@ -213,7 +212,7 @@ const Index = () => {
                 <img src={p.logo} alt={p.name} className="w-full h-full object-contain" />
               </div>
               <h4 className="text-lg font-bold group-hover:text-primary transition-colors">{p.name}</h4>
-              <p className="text-xs text-primary/60 mt-1 uppercase tracking-[0.15em]">Brand Partner</p>
+              <p className="text-xs text-primary/60 mt-1 uppercase tracking-[0.15em]">Sponsor</p>
             </motion.a>
           ))}
         </div>
@@ -244,9 +243,8 @@ const Index = () => {
 
         {/* Vendors */}
         <SectionHeading tag="Vendors" title="Our trusted vendors" center />
-        <div className="grid sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-8 max-w-2xl mx-auto">
           {[
-            { name: "Cineplex", logo: logoCineplex, url: "https://www.cineplex.com/", bg: "bg-white" },
             { name: "Spa Mobile", logo: logoSpaMobile, url: "https://www.spa-mobile.com/", bg: "bg-white" },
             { name: "Studio Jolie Moi", logo: logoStudioJolieMoi, url: "https://studiojoliemoi.com/en", bg: "bg-white" },
           ].map((p, i) => (

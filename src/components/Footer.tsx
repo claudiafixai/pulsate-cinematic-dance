@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import logo from "@/assets/pulsate-logo.png";
 import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
@@ -52,9 +52,6 @@ const Footer = () => {
             <div className="space-y-3">
               <a href="mailto:info@pulsateproject.ca" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
                 <Mail size={14} className="text-primary/60" /> info@pulsateproject.ca
-              </a>
-              <a href="tel:+15146194119" className="flex items-center gap-2.5 text-sm text-muted-foreground hover:text-primary transition-colors duration-300">
-                <Phone size={14} className="text-primary/60" /> +1 514 619-4119
               </a>
               <div className="flex items-start gap-2.5 text-sm text-muted-foreground">
                 <MapPin size={14} className="mt-0.5 shrink-0 text-primary/60" />
