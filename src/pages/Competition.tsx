@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Video, Upload, Star, Film, Award, Mail } from "lucide-react";
+import { Video, Upload, Star, Film, Award, Mail, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
 import PageHero from "@/components/PageHero";
@@ -8,15 +8,23 @@ import SectionHeading from "@/components/SectionHeading";
 import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
 const steps = [
-  { icon: Mail, title: "Register", desc: "Create your Pulsate account and select your category." },
-  { icon: Video, title: "Choreograph & Film", desc: "Create your dance piece with cinematic intention. Film it with care." },
-  { icon: Upload, title: "Submit Your Video", desc: "Upload your creation through the Pulsate portal before the deadline." },
-  { icon: Star, title: "Judging & Selection", desc: "Our panel evaluates every entry for storytelling, creativity, and cinematic quality." },
-  { icon: Film, title: "Premiere on Screen", desc: "Selected pieces are featured in the Pulsate film at Cineplex Laval." },
+  { icon: Mail, title: "Register", desc: "Sign up and choose your category." },
+  { icon: Video, title: "Create & Film", desc: "Choreograph and film your dance piece with cinematic intent." },
+  { icon: Upload, title: "Submit", desc: "Upload your video to the Pulsate portal before the deadline." },
+  { icon: Star, title: "Selection", desc: "Our panel evaluates every entry for storytelling, creativity, and cinematic quality." },
+  { icon: Film, title: "Premiere", desc: "Selected pieces and collective videos with all the participants are featured in the Pulsate film at the movie theater." },
 ];
 
-const categories = [
+const groupCategories = [
   "Solo", "Duo/Trio", "Small Group (4–9)", "Large Group (10+)", "Open Category"
+];
+
+const ageCategories = [
+  "Kids", "Teens", "Adults", "Seniors"
+];
+
+const levelCategories = [
+  "Beginner", "Intermediate", "Advanced", "Professional"
 ];
 
 const criteria = [
@@ -77,20 +85,61 @@ const Competition = () => {
 
       <Section variant="alt">
         <SectionHeading tag="Categories" title="Find your category" center />
-        <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
-          {categories.map((c, i) => (
-            <motion.div
-              key={c}
-              className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:border-primary/30 transition-all duration-300"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.06 }}
-            >
-              {c}
-            </motion.div>
-          ))}
+
+        <div className="max-w-3xl mx-auto mb-10">
+          <h3 className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">By Group Size</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {groupCategories.map((c, i) => (
+              <motion.div
+                key={c}
+                className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:border-primary/30 transition-all duration-300"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+              >
+                {c}
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        <div className="max-w-3xl mx-auto mb-10">
+          <h3 className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">By Age</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {ageCategories.map((c, i) => (
+              <motion.div
+                key={c}
+                className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:border-primary/30 transition-all duration-300"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+              >
+                {c}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-3xl mx-auto">
+          <h3 className="text-center text-sm font-semibold uppercase tracking-[0.2em] text-primary mb-4">By Level</h3>
+          <div className="flex flex-wrap justify-center gap-4">
+            {levelCategories.map((c, i) => (
+              <motion.div
+                key={c}
+                className="px-6 py-3 rounded-full glass-card text-sm font-medium hover:border-primary/30 transition-all duration-300"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.06 }}
+              >
+                {c}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
         <p className="text-center text-muted-foreground text-sm mt-8">
           All styles welcome: contemporary, hip-hop, ballet, jazz, cultural, freestyle, and more.
         </p>

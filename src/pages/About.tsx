@@ -14,11 +14,11 @@ const values = [
 ];
 
 const journey = [
-  { step: "01", title: "Register", desc: "Sign up and choose your category." },
-  { step: "02", title: "Create & Film", desc: "Choreograph and film your dance piece with cinematic intent." },
-  { step: "03", title: "Submit", desc: "Upload your video to the Pulsate portal." },
-  { step: "04", title: "Selection", desc: "Our judges review all submissions for the final film." },
-  { step: "05", title: "Premiere", desc: "Selected pieces are featured in the Pulsate film at Cineplex Laval." },
+  { step: "01", title: "Submit Your Video", desc: "A filmed submission. Your movement. Your voice." },
+  { step: "02", title: "Artist Review & Selection", desc: "Submissions are reviewed by industry professionals who value artistry, intention, and presence — not perfection." },
+  { step: "03", title: "On-Camera Creation", desc: "All participants are filmed as part of the collective dance film. Selected dancers have their submitted piece re-created cinematically, with professional direction and production." },
+  { step: "04", title: "Cinema Premiere", desc: "Experience your work on the big screen, surrounded by the dance community." },
+  { step: "05", title: "Workshops & Celebration", desc: "Train, connect, and celebrate." },
 ];
 
 const About = () => {
@@ -27,8 +27,8 @@ const About = () => {
       <PageHero
         image={aboutImg}
         tag="About Pulsate"
-        title="A dance film project for every passionate mover"
-        description="Pulsate is a hybrid dance and film project created to help passionate dancers grow in their art, feel empowered, and share the experience with their community."
+        title="A bucket-list dance film experience for every passionate mover"
+        description="Pulsate is a hybrid dance and film project created to help passionate dancers grow in their art, feel empowered, and share the experience with their community. A bucket list is about the experiences you must have before the curtain falls — and Pulsate is that experience for dancers."
       >
         <Link to="/get-involved" className="btn-primary px-8 py-3.5 rounded-full text-sm">
           Get Tickets
@@ -75,7 +75,10 @@ const About = () => {
       </Section>
 
       <Section>
-        <SectionHeading tag="The Journey" title="From submission to screen in 5 steps" center />
+        <SectionHeading tag="The Bucket-List Journey" title="Your path from submission to the big screen" center />
+        <p className="text-center text-muted-foreground max-w-2xl mx-auto mb-12">
+          Every great bucket list has defining moments. Pulsate gives dancers five of them — each one designed to push your artistry, build your confidence, and leave you with an unforgettable experience.
+        </p>
         <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {journey.map((j, i) => (
             <motion.div
@@ -96,9 +99,12 @@ const About = () => {
 
       <Section variant="alt">
         <div className="max-w-3xl mx-auto text-center">
-          <SectionHeading tag="AID – Art in Dance" title="Pulsate believes in Accessibility, Inclusion & Diversity" center />
+          <SectionHeading tag="IDA – International Dance Association" title="Presented by the International Dance Association" center />
+          <p className="text-muted-foreground leading-relaxed mb-4">
+            Pulsate is presented by the International Dance Association (IDA), a non-profit organization dedicated to supporting dancers and making artistic opportunities accessible regardless of financial background.
+          </p>
           <p className="text-muted-foreground leading-relaxed mb-8">
-            Pulsate is committed to making dance accessible to everyone. We celebrate all bodies, all backgrounds, and all styles. Our AID initiative ensures that financial barriers, physical limitations, and cultural differences never stand in the way of artistic expression.
+            Most profits from Pulsate are reinvested into initiatives that help young dancers pursue their dreams.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             {[
