@@ -60,10 +60,10 @@ const GetInvolved = () => {
         title={t("involved.hero.title")}
         description={t("involved.hero.description")}
       >
-        <div className="flex flex-wrap gap-4">
-          <a href="#sponsors" className="btn-primary px-8 py-3.5 rounded-full text-sm">{t("involved.hero.sponsor")}</a>
-          <a href="#merch" className="btn-outline px-8 py-3.5 rounded-full text-sm">{t("involved.hero.merch")}</a>
-          <a href="#contact" className="text-primary font-medium underline underline-offset-4 flex items-center hover:text-gold-light transition-colors">{t("involved.hero.contact")}</a>
+        <div className="flex flex-col sm:flex-row gap-4">
+          <a href="#sponsors" className="btn-primary px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("involved.hero.sponsor")}</a>
+          <a href="#merch" className="btn-outline px-8 py-3.5 rounded-full text-sm min-h-[44px] flex items-center justify-center">{t("involved.hero.merch")}</a>
+          <a href="#contact" className="text-primary font-medium underline underline-offset-4 flex items-center min-h-[44px] hover:text-gold-light transition-colors">{t("involved.hero.contact")}</a>
         </div>
       </PageHero>
 
