@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Heart, Film, Users, Star, Sparkles } from "lucide-react";
+import idaLogo from "@/assets/logo-ida.jpg";
 import { motion } from "framer-motion";
 import aboutImg from "@/assets/about-dance.jpg";
 import heroImg from "@/assets/hero-dance.jpg";
@@ -82,6 +83,7 @@ const About = () => {
 
       <Section variant="alt">
         <div className="max-w-3xl mx-auto text-center">
+          <img src={idaLogo} alt="International Dance Association" className="mx-auto mb-8 max-w-[280px] w-full h-auto" />
           <SectionHeading tag={t("about.ida.tag")} title={t("about.ida.title")} center />
           <p className="text-muted-foreground leading-relaxed mb-4">{t("about.ida.p1")}</p>
           <p className="text-muted-foreground leading-relaxed mb-8">{t("about.ida.p2")}</p>
