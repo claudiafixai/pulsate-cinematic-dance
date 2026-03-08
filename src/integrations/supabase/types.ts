@@ -14,6 +14,96 @@ export type Database = {
   }
   public: {
     Tables: {
+      dancers: {
+        Row: {
+          age_group: string | null
+          created_at: string | null
+          dance_style: string | null
+          email: string
+          group_size: number | null
+          group_type: string | null
+          id: string
+          internal_notes: string | null
+          level: string | null
+          name: string
+          payment_status: string | null
+          phone: string | null
+          status: string | null
+          video_url: string | null
+          vip_pass: boolean | null
+          waiver_signed: boolean | null
+          workshop_pass: boolean | null
+        }
+        Insert: {
+          age_group?: string | null
+          created_at?: string | null
+          dance_style?: string | null
+          email: string
+          group_size?: number | null
+          group_type?: string | null
+          id?: string
+          internal_notes?: string | null
+          level?: string | null
+          name: string
+          payment_status?: string | null
+          phone?: string | null
+          status?: string | null
+          video_url?: string | null
+          vip_pass?: boolean | null
+          waiver_signed?: boolean | null
+          workshop_pass?: boolean | null
+        }
+        Update: {
+          age_group?: string | null
+          created_at?: string | null
+          dance_style?: string | null
+          email?: string
+          group_size?: number | null
+          group_type?: string | null
+          id?: string
+          internal_notes?: string | null
+          level?: string | null
+          name?: string
+          payment_status?: string | null
+          phone?: string | null
+          status?: string | null
+          video_url?: string | null
+          vip_pass?: boolean | null
+          waiver_signed?: boolean | null
+          workshop_pass?: boolean | null
+        }
+        Relationships: []
+      }
+      email_log: {
+        Row: {
+          email_type: string
+          id: string
+          recipient_email: string
+          recipient_type: string | null
+          resend_id: string | null
+          sent_at: string | null
+          status: string | null
+        }
+        Insert: {
+          email_type: string
+          id?: string
+          recipient_email: string
+          recipient_type?: string | null
+          resend_id?: string | null
+          sent_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          email_type?: string
+          id?: string
+          recipient_email?: string
+          recipient_type?: string | null
+          resend_id?: string | null
+          sent_at?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
       email_submissions: {
         Row: {
           created_at: string
@@ -32,6 +122,84 @@ export type Database = {
           email?: string
           id?: string
           source?: string
+        }
+        Relationships: []
+      }
+      judges: {
+        Row: {
+          bio: string | null
+          contract_signed: boolean | null
+          created_at: string | null
+          email: string
+          id: string
+          internal_notes: string | null
+          name: string
+          role: string | null
+          specialty: string | null
+          status: string | null
+        }
+        Insert: {
+          bio?: string | null
+          contract_signed?: boolean | null
+          created_at?: string | null
+          email: string
+          id?: string
+          internal_notes?: string | null
+          name: string
+          role?: string | null
+          specialty?: string | null
+          status?: string | null
+        }
+        Update: {
+          bio?: string | null
+          contract_signed?: boolean | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          internal_notes?: string | null
+          name?: string
+          role?: string | null
+          specialty?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      vendors: {
+        Row: {
+          contact_name: string
+          contract_signed: boolean | null
+          created_at: string | null
+          email: string
+          id: string
+          internal_notes: string | null
+          organization: string
+          package: string | null
+          status: string | null
+          type: string | null
+        }
+        Insert: {
+          contact_name: string
+          contract_signed?: boolean | null
+          created_at?: string | null
+          email: string
+          id?: string
+          internal_notes?: string | null
+          organization: string
+          package?: string | null
+          status?: string | null
+          type?: string | null
+        }
+        Update: {
+          contact_name?: string
+          contract_signed?: boolean | null
+          created_at?: string | null
+          email?: string
+          id?: string
+          internal_notes?: string | null
+          organization?: string
+          package?: string | null
+          status?: string | null
+          type?: string | null
         }
         Relationships: []
       }
