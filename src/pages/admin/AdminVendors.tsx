@@ -46,7 +46,31 @@ const AdminVendors = () => {
     },
   });
 
+  const insertMutation = useMutation({
+    mutationFn: async (newVendor: any) => {
+      const { error, data } = await supabase.from("vendors").insert(newVendor).select().single();
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: async (data) => {
+      qc.invalidateQueries({ queryKey: ["admin-vendors"] });
+      qc.invalidateQueries({ queryKey: ["admin-vendor-count"] });
+      toast({ title: "Vendor created" });
+      try {
+        await supabase.functions.invoke("send-email", {
+          body: { email: data.email, source: "vendor-kit-sent", name: data.contact_name },
+        });
+      } catch { /* edge function handles logging */ }
+      setIsCreating(false);
+    },
+  });
+
   const handleSave = (data: any) => {
+    if (isCreating) {
+      const { id, ...rest } = data;
+      insertMutation.mutate(rest);
+      return;
+    }
     updateMutation.mutate(data);
     setSelected(null);
   };
