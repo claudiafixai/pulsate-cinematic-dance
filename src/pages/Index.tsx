@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Users, Award, Clapperboard, Eye, ChevronDown } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import heroImg from "@/assets/hero-dance.jpg";
+import carlosImg from "@/assets/carlos-alejandro.jpg";
 import aboutGroupImg from "@/assets/about-group-dance.jpg";
 import logoDanseAlejandro from "@/assets/logo-danse-alejandro.png";
 import logoClaudiaOps from "@/assets/logo-claudiaops.png";
