@@ -54,6 +54,7 @@ const AdminVendors = () => {
     { key: "package", label: "Package", type: "select" as const, options: ["Community", "Gold", "Custom"] },
     { key: "status", label: "Status", type: "select" as const, options: statusOptions },
     { key: "contract_signed", label: "Contract Signed", type: "checkbox" as const },
+    { key: "language", label: "Language", type: "select" as const, options: ["fr", "en"] },
     { key: "internal_notes", label: "Notes", type: "textarea" as const },
   ];
 

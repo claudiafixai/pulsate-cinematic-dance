@@ -95,6 +95,7 @@ const AdminDancers = () => {
     { key: "waiver_signed", label: "Waiver Signed", type: "checkbox" as const },
     { key: "workshop_pass", label: "Workshop Pass", type: "checkbox" as const },
     { key: "vip_pass", label: "VIP Pass", type: "checkbox" as const },
+    { key: "language", label: "Language", type: "select" as const, options: ["fr", "en"] },
     { key: "internal_notes", label: "Notes", type: "textarea" as const },
   ];
 
