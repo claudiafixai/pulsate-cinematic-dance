@@ -112,6 +112,105 @@ function signupNotifyTeamEmail(email: string, source: string, sourceLabel: strin
   `);
 }
 
+// --- New status email templates ---
+
+function dancerSubmissionReceivedEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">We received your submission!</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">Thank you for submitting your entry to <strong style="color:${COLORS.goldLight};">Pulsate 2026</strong>. We're thrilled to see your passion for dance.</p>
+    <p style="margin:0 0 24px;">Our team will carefully review your submission and you'll hear back from us soon. In the meantime, keep moving!</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function dancerUnderReviewEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">Your submission is under review</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">Great news — your video is currently being reviewed by our panel of judges.</p>
+    <p style="margin:0 0 24px;">Sit tight, we'll be in touch once the review is complete. We appreciate your patience.</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function dancerSelectedEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">You've been selected 🎬</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;"><strong style="color:${COLORS.goldLight};">Congratulations!</strong> You've been selected to be part of the <strong style="color:${COLORS.goldLight};">Pulsate 2026</strong> film.</p>
+    <p style="margin:0 0 24px;">More details about next steps, scheduling, and what to expect will be coming your way soon. Get ready to shine.</p>
+    <table role="presentation" cellpadding="0" cellspacing="0" style="margin:0 auto;">
+      <tr><td style="background:linear-gradient(135deg,${COLORS.gold},${COLORS.goldDark});padding:14px 32px;border-radius:50px;text-align:center;">
+        <a href="https://pulsateproject.ca" style="color:${COLORS.cream};font-size:14px;font-weight:600;text-decoration:none;display:inline-block;">Visit Pulsate →</a>
+      </td></tr>
+    </table>
+    <p style="margin:24px 0 0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function dancerNotSelectedEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">Thank you for your submission</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">Thank you sincerely for sharing your talent with us. After careful review, we weren't able to include your entry in this year's film.</p>
+    <p style="margin:0 0 24px;">Please know that this doesn't diminish your artistry — you are still very much a part of the Pulsate community, and we truly hope to see you again in future projects.</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function judgeInvitationEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">You're invited to be a Pulsate judge</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">We'd love to have you as part of our review panel for <strong style="color:${COLORS.goldLight};">Pulsate 2026</strong>.</p>
+    <p style="margin:0 0 24px;">Your expertise and eye for talent would be invaluable. Simply reply to this email to confirm your participation, and we'll send you all the details.</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function judgeConfirmedEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">Welcome to the Pulsate judging panel</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">You're officially confirmed as a judge for <strong style="color:${COLORS.goldLight};">Pulsate 2026</strong>. We're thrilled to have you on board.</p>
+    <p style="margin:0 0 24px;">Details, schedules, and review materials will be sent your way soon. Thank you for being part of this journey.</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function vendorKitSentEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">Your sponsor kit is on its way</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">Your <strong style="color:${COLORS.goldLight};">Pulsate sponsor kit</strong> has been sent. It includes everything you need to know about our partnership opportunities.</p>
+    <p style="margin:0 0 24px;">If you have any questions, don't hesitate to reach out — we'd love to chat.</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+function vendorConfirmedEmail(name: string) {
+  return brandedEmailTemplate(`
+    <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">Welcome aboard — partnership confirmed</h1>
+    <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+    <p style="margin:0 0 16px;">We're thrilled to officially welcome you as a partner for <strong style="color:${COLORS.goldLight};">Pulsate 2026</strong>.</p>
+    <p style="margin:0 0 24px;">Your details will be featured in our materials, and we'll be in touch with next steps shortly. Thank you for believing in this project.</p>
+    <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+  `);
+}
+
+// Map of status email types to their config
+const STATUS_EMAIL_MAP: Record<string, { subject: string; html: (name: string) => string; recipientType: string }> = {
+  "dancer-submission-received": { subject: "We received your submission — Pulsate", html: dancerSubmissionReceivedEmail, recipientType: "dancer" },
+  "dancer-under-review": { subject: "Your submission is under review — Pulsate", html: dancerUnderReviewEmail, recipientType: "dancer" },
+  "dancer-selected": { subject: "You've been selected 🎬 — Pulsate", html: dancerSelectedEmail, recipientType: "dancer" },
+  "dancer-not-selected": { subject: "Thank you for your submission — Pulsate", html: dancerNotSelectedEmail, recipientType: "dancer" },
+  "judge-invitation": { subject: "You're invited to be a Pulsate judge", html: judgeInvitationEmail, recipientType: "judge" },
+  "judge-confirmed": { subject: "Welcome to the Pulsate judging panel", html: judgeConfirmedEmail, recipientType: "judge" },
+  "vendor-kit-sent": { subject: "Your Pulsate sponsor kit is on its way", html: vendorKitSentEmail, recipientType: "vendor" },
+  "vendor-confirmed": { subject: "Welcome aboard — partnership confirmed", html: vendorConfirmedEmail, recipientType: "vendor" },
+};
+
 const SOURCE_LABELS: Record<string, string> = {
   "footer-newsletter": "Pulsate Updates",
   "competition-notify": "Competition Registration",
@@ -139,7 +238,11 @@ Deno.serve(async (req) => {
       throw new Error("RESEND_API_KEY is not configured");
     }
 
-    const sendEmail = async (to: string[], subject: string, html: string) => {
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
+    const SUPABASE_ANON_KEY = Deno.env.get("SUPABASE_ANON_KEY")!;
+    const SERVICE_ROLE_KEY = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
+
+    const sendEmail = async (to: string[], subject: string, html: string): Promise<string | null> => {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${RESEND_API_KEY}` },
@@ -155,32 +258,74 @@ Deno.serve(async (req) => {
         const err = await res.text();
         throw new Error(`Resend error: ${err}`);
       }
-      return res;
+      const data = await res.json();
+      return data?.id || null;
     };
 
+    const logEmail = async (recipientEmail: string, recipientType: string, emailType: string, status: string, resendId: string | null) => {
+      await fetch(`${SUPABASE_URL}/rest/v1/email_log`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          apikey: SERVICE_ROLE_KEY,
+          Authorization: `Bearer ${SERVICE_ROLE_KEY}`,
+        },
+        body: JSON.stringify({ recipient_email: recipientEmail, recipient_type: recipientType, email_type: emailType, status, resend_id: resendId }),
+      });
+    };
+
+    // Handle new status email types
+    const statusConfig = STATUS_EMAIL_MAP[source];
+    if (statusConfig) {
+      let resendId: string | null = null;
+      try {
+        resendId = await sendEmail([email], statusConfig.subject, statusConfig.html(name));
+        await logEmail(email, statusConfig.recipientType, source, "sent", resendId);
+      } catch (e) {
+        await logEmail(email, statusConfig.recipientType, source, "failed", null);
+        throw e;
+      }
+
+      return new Response(JSON.stringify({ success: true, resend_id: resendId }), {
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
+    // Existing: contact form
     if (source === "contact") {
-      // Send branded notification to team
       await sendEmail(
         ["pattyisabelle@hotmail.fr"],
         `Pulsate Contact: ${name || "No name"}`,
         contactNotifyTeamEmail(name, email, message)
       );
-      // Send branded confirmation to user
       await sendEmail(
         [email],
         "We received your message — Pulsate",
         contactConfirmEmail(name)
       );
-    } else {
+    }
+    // Existing: status-update (legacy from admin panels)
+    else if (source === "status-update") {
+      await sendEmail(
+        [email],
+        "Status Update — Pulsate",
+        brandedEmailTemplate(`
+          <h1 style="margin:0 0 16px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:700;color:${COLORS.goldLight};">Status Update</h1>
+          <p style="margin:0 0 16px;">Hi ${name || "there"},</p>
+          <p style="margin:0 0 24px;">${message}</p>
+          <p style="margin:0;color:${COLORS.creamMuted};font-size:13px;">— The Pulsate Team</p>
+        `)
+      );
+    }
+    // Existing: newsletter signups
+    else {
       const sourceLabel = SOURCE_LABELS[source] || "Pulsate Updates";
 
-      // Send branded confirmation to user
       await sendEmail(
         [email],
         `You're on the list — ${sourceLabel}`,
         notifyUserEmail(sourceLabel)
       );
-      // Send branded notification to team
       await sendEmail(
         ["pattyisabelle@hotmail.fr"],
         `New signup: ${sourceLabel}`,

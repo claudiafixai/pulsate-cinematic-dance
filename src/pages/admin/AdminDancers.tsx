@@ -56,27 +56,24 @@ const AdminDancers = () => {
     }
   };
 
+  const STATUS_SOURCE_MAP: Record<string, string> = {
+    "Submitted": "dancer-submission-received",
+    "Under Review": "dancer-under-review",
+    "Selected": "dancer-selected",
+    "Not Selected": "dancer-not-selected",
+  };
+
   const handleEmailConfirm = async (sendEmail: boolean) => {
     const { dancer, newStatus } = emailDialog;
     updateMutation.mutate(dancer);
     if (sendEmail) {
+      const emailSource = STATUS_SOURCE_MAP[newStatus] || "status-update";
       try {
         await supabase.functions.invoke("send-email", {
-          body: { email: dancer.email, source: "status-update", name: dancer.name, message: `Your status has been updated to: ${newStatus}` },
-        });
-        await supabase.from("email_log").insert({
-          recipient_email: dancer.email,
-          recipient_type: "dancer",
-          email_type: `status-${newStatus}`,
-          status: "sent",
+          body: { email: dancer.email, source: emailSource, name: dancer.name },
         });
       } catch {
-        await supabase.from("email_log").insert({
-          recipient_email: dancer.email,
-          recipient_type: "dancer",
-          email_type: `status-${newStatus}`,
-          status: "failed",
-        });
+        // Edge function handles logging
       }
     }
     setEmailDialog({ open: false, dancer: null, newStatus: "" });

@@ -53,27 +53,22 @@ const AdminJudges = () => {
     }
   };
 
+  const STATUS_SOURCE_MAP: Record<string, string> = {
+    "Invited": "judge-invitation",
+    "Confirmed": "judge-confirmed",
+  };
+
   const handleEmailConfirm = async (sendEmail: boolean) => {
     const { judge, newStatus } = emailDialog;
     updateMutation.mutate(judge);
     if (sendEmail) {
+      const emailSource = STATUS_SOURCE_MAP[newStatus] || "status-update";
       try {
         await supabase.functions.invoke("send-email", {
-          body: { email: judge.email, source: "status-update", name: judge.name, message: `Your status has been updated to: ${newStatus}` },
-        });
-        await supabase.from("email_log").insert({
-          recipient_email: judge.email,
-          recipient_type: "judge",
-          email_type: `status-${newStatus}`,
-          status: "sent",
+          body: { email: judge.email, source: emailSource, name: judge.name },
         });
       } catch {
-        await supabase.from("email_log").insert({
-          recipient_email: judge.email,
-          recipient_type: "judge",
-          email_type: `status-${newStatus}`,
-          status: "failed",
-        });
+        // Edge function handles logging
       }
     }
     setEmailDialog({ open: false, judge: null, newStatus: "" });
