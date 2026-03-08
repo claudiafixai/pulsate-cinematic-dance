@@ -11,14 +11,14 @@ interface PageHeroProps {
 
 const PageHero = ({ image, vimeoId, tag, title, description, children }: PageHeroProps) => {
   return (
-    <section className="relative min-h-[80vh] sm:min-h-[80vh] flex items-end overflow-hidden">
+    <section className="relative w-full min-h-[100svh] flex items-end overflow-hidden">
       {vimeoId ? (
         <>
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
             <iframe
               src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1`}
               allow="autoplay; fullscreen"
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full w-auto h-auto border-0"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-screen h-[56.25vw] min-h-screen min-w-[177.78vh] border-0"
               title="Hero video"
             />
           </div>
