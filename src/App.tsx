@@ -15,6 +15,7 @@ import Premiere from "./pages/Premiere";
 import GetInvolved from "./pages/GetInvolved";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
+import ApplyJudge from "./pages/ApplyJudge";
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
