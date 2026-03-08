@@ -13,6 +13,13 @@ import Workshops from "./pages/Workshops";
 import Premiere from "./pages/Premiere";
 import GetInvolved from "./pages/GetInvolved";
 import NotFound from "./pages/NotFound";
+import AdminLogin from "./pages/admin/AdminLogin";
+import AdminLayout from "./components/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminDancers from "./pages/admin/AdminDancers";
+import AdminJudges from "./pages/admin/AdminJudges";
+import AdminVendors from "./pages/admin/AdminVendors";
+import AdminEmails from "./pages/admin/AdminEmails";
 import { useEffect } from "react";
 
 const queryClient = new QueryClient();
@@ -25,6 +32,36 @@ const ScrollToTop = () => {
   return null;
 };
 
+const PublicLayout = () => {
+  const { pathname } = useLocation();
+  const isAdmin = pathname.startsWith("/admin");
+  return (
+    <>
+      {!isAdmin && <Navbar />}
+      <AnimatePresence mode="wait">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/competition" element={<Competition />} />
+          <Route path="/workshops" element={<Workshops />} />
+          <Route path="/premiere" element={<Premiere />} />
+          <Route path="/get-involved" element={<GetInvolved />} />
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="dancers" element={<AdminDancers />} />
+            <Route path="judges" element={<AdminJudges />} />
+            <Route path="vendors" element={<AdminVendors />} />
+            <Route path="emails" element={<AdminEmails />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </AnimatePresence>
+      {!isAdmin && <Footer />}
+    </>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -32,19 +69,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <Navbar />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/competition" element={<Competition />} />
-            <Route path="/workshops" element={<Workshops />} />
-            <Route path="/premiere" element={<Premiere />} />
-            <Route path="/get-involved" element={<GetInvolved />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AnimatePresence>
-        <Footer />
+        <PublicLayout />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
