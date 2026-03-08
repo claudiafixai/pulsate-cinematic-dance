@@ -37,7 +37,7 @@ const PageHero = ({ image, vimeoId, tag, title, description, children }: PageHer
           <div className="hero-overlay absolute inset-0" />
         </div>
       ) : null}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-20 pt-28 sm:pt-32 w-full">
+      <div className="relative z-[2] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 sm:pb-20 pt-28 sm:pt-32 w-full">
         {tag && (
           <motion.span
             className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-primary mb-4"
