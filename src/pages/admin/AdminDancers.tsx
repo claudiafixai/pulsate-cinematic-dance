@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import AdminDetailPanel from "@/components/admin/AdminDetailPanel";
 import StatusEmailDialog from "@/components/admin/StatusEmailDialog";
@@ -17,6 +18,8 @@ const AdminDancers = () => {
   const [filterAge, setFilterAge] = useState<string>("all");
   const [filterLevel, setFilterLevel] = useState<string>("all");
   const [selected, setSelected] = useState<any>(null);
+  const [signedVideoUrl, setSignedVideoUrl] = useState<string | null>(null);
+  const [videoUrlError, setVideoUrlError] = useState<string | null>(null);
   const [emailDialog, setEmailDialog] = useState<{ open: boolean; dancer: any; newStatus: string }>({ open: false, dancer: null, newStatus: "" });
   const { toast } = useToast();
   const qc = useQueryClient();
@@ -80,6 +83,43 @@ const AdminDancers = () => {
     setSelected(null);
   };
 
+  // Generate signed URL when a dancer is selected
+  useEffect(() => {
+    setSignedVideoUrl(null);
+    setVideoUrlError(null);
+    if (!selected?.video_url) return;
+    const getUrl = async () => {
+      const { data, error } = await supabase.storage
+        .from("dancer-videos")
+        .createSignedUrl(selected.video_url, 3600);
+      if (error || !data?.signedUrl) {
+        setVideoUrlError("Could not generate video link");
+      } else {
+        setSignedVideoUrl(data.signedUrl);
+      }
+    };
+    getUrl();
+  }, [selected?.id, selected?.video_url]);
+
+  // Parse internal_notes JSON for guardian/group info
+  const parsedNotes = (() => {
+    if (!selected?.internal_notes) return null;
+    try {
+      const obj = JSON.parse(selected.internal_notes);
+      if (typeof obj === "object" && obj !== null) return obj;
+      return null;
+    } catch {
+      return null;
+    }
+  })();
+
+  const NOTES_LABELS: Record<string, string> = {
+    guardian_name: "Guardian Name",
+    guardian_email: "Guardian Email",
+    guardian_consent: "Guardian Consent ✓",
+    group_name: "Group Name",
+  };
+
   const fields = [
     { key: "name", label: "Name", type: "text" as const },
     { key: "email", label: "Email", type: "text" as const },
@@ -89,15 +129,17 @@ const AdminDancers = () => {
     { key: "group_type", label: "Group Type", type: "select" as const, options: ["Solo", "Duo", "Group"] },
     { key: "group_size", label: "Group Size", type: "number" as const },
     { key: "dance_style", label: "Dance Style", type: "text" as const },
-    { key: "video_url", label: "Video URL", type: "text" as const },
     { key: "status", label: "Status", type: "select" as const, options: statusOptions },
     { key: "payment_status", label: "Payment", type: "select" as const, options: ["Unpaid", "Paid"] },
     { key: "waiver_signed", label: "Waiver Signed", type: "checkbox" as const },
     { key: "workshop_pass", label: "Workshop Pass", type: "checkbox" as const },
     { key: "vip_pass", label: "VIP Pass", type: "checkbox" as const },
     { key: "language", label: "Language", type: "select" as const, options: ["fr", "en"] },
-    { key: "internal_notes", label: "Notes", type: "textarea" as const },
+    // internal_notes handled separately below
   ];
+
+  const handleSelectDancer = (d: any) => setSelected(d);
+  const handleClosePanel = () => { setSelected(null); setSignedVideoUrl(null); setVideoUrlError(null); };
 
   return (
     <div className="space-y-6">
@@ -125,7 +167,7 @@ const AdminDancers = () => {
             {dancers.length === 0 ? (
               <TableRow><TableCell colSpan={6} className="text-center text-muted-foreground py-8">No dancers found</TableCell></TableRow>
             ) : dancers.map((d) => (
-              <TableRow key={d.id} className="cursor-pointer hover:bg-secondary/50" onClick={() => setSelected(d)}>
+              <TableRow key={d.id} className="cursor-pointer hover:bg-secondary/50" onClick={() => handleSelectDancer(d)}>
                 <TableCell className="font-medium">{d.name}</TableCell>
                 <TableCell className="text-xs">{d.email}</TableCell>
                 <TableCell><Badge variant="secondary">{d.age_group ?? "—"}</Badge></TableCell>
@@ -139,7 +181,55 @@ const AdminDancers = () => {
       </div>
 
       {selected && (
-        <AdminDetailPanel title="Dancer Details" fields={fields} data={selected} onSave={handleSave} onClose={() => setSelected(null)} />
+        <AdminDetailPanel
+          title="Dancer Details"
+          fields={fields}
+          data={selected}
+          onSave={handleSave}
+          onClose={handleClosePanel}
+          extraContent={
+            <div className="space-y-4">
+              {/* Video section */}
+              <div className="space-y-1.5">
+                <p className="text-xs text-muted-foreground font-medium">Video</p>
+                {!selected.video_url ? (
+                  <p className="text-sm text-muted-foreground">No video uploaded</p>
+                ) : videoUrlError ? (
+                  <p className="text-sm text-destructive">{videoUrlError}</p>
+                ) : signedVideoUrl ? (
+                  <Button size="sm" variant="outline" asChild>
+                    <a href={signedVideoUrl} target="_blank" rel="noopener noreferrer">▶ Watch Video</a>
+                  </Button>
+                ) : (
+                  <p className="text-sm text-muted-foreground">Loading video link…</p>
+                )}
+              </div>
+
+              {/* Parsed notes / raw notes */}
+              <div className="space-y-1.5">
+                <p className="text-xs text-muted-foreground font-medium">Additional Info</p>
+                {parsedNotes ? (
+                  <div className="space-y-2">
+                    {Object.entries(NOTES_LABELS).map(([key, label]) =>
+                      parsedNotes[key] != null ? (
+                        <div key={key}>
+                          <p className="text-xs text-muted-foreground">{label}</p>
+                          <p className="text-sm text-foreground">
+                            {typeof parsedNotes[key] === "boolean" ? (parsedNotes[key] ? "Yes" : "No") : String(parsedNotes[key])}
+                          </p>
+                        </div>
+                      ) : null
+                    )}
+                  </div>
+                ) : selected.internal_notes ? (
+                  <p className="text-sm text-foreground whitespace-pre-wrap">{selected.internal_notes}</p>
+                ) : (
+                  <p className="text-sm text-muted-foreground">—</p>
+                )}
+              </div>
+            </div>
+          }
+        />
       )}
 
       <StatusEmailDialog
