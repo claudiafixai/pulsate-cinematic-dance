@@ -17,6 +17,7 @@ const Navbar = () => {
     { label: t("nav.workshops"), to: "/workshops" },
     { label: t("nav.premiere"), to: "/premiere" },
     { label: t("nav.getInvolved"), to: "/get-involved" },
+    { label: t("nav.register"), to: "/register" },
   ];
 
   useEffect(() => {

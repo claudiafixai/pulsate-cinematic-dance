@@ -48,6 +48,7 @@ const PublicLayout = () => {
           <Route path="/workshops" element={<Workshops />} />
           <Route path="/premiere" element={<Premiere />} />
           <Route path="/get-involved" element={<GetInvolved />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<AdminDashboard />} />
