@@ -85,6 +85,12 @@ const Footer = () => {
         <div className="text-center text-sm text-muted-foreground">
           {t("footer.copyright")}
         </div>
+        <div className="text-center text-xs text-muted-foreground/60 mt-2">
+          Site &amp; systems by{" "}
+          <a href="https://claudiaops.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">
+            ClaudiaOps AI
+          </a>
+        </div>
       </div>
     </footer>
   );
