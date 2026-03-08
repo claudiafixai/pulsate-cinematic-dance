@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import logo from "@/assets/pulsate-logo.png";
 import { useEmailSubmit } from "@/hooks/useEmailSubmit";
 
