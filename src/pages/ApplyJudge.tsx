@@ -99,7 +99,7 @@ const ApplyJudge = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <PageHero title={t("judge.hero.title")} subtitle={t("judge.hero.subtitle")} image={heroImg} />
+      <PageHero title={t("judge.hero.title")} description={t("judge.hero.subtitle")} image={heroImg} />
 
       <Section className="max-w-lg mx-auto py-16 px-4">
         <motion.div
