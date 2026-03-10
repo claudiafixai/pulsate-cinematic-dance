@@ -247,6 +247,8 @@ const Index = () => {
               <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/15 flex items-center justify-center border border-primary/20 overflow-hidden">
                 {m.name === "Carlos Alejandro" ? (
                   <img src={carlosImg} alt={m.name} className="w-full h-full object-cover" />
+                ) : m.name === "Barbara Villavicencio" ? (
+                  <img src={barbaraImg} alt={m.name} className="w-full h-full object-cover" />
                 ) : (
                   <span className="text-2xl font-serif font-bold gold-gradient-text">{m.name.split(" ").map(n => n[0]).join("")}</span>
                 )}
